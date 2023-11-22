@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,10 +10,9 @@ public class Cliente {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String nomeUtente;
-    
     private String password;
     
     

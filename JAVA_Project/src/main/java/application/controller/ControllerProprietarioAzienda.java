@@ -1,12 +1,16 @@
-package controller;
+package application.controller;
 
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
-import controllerInterface.IProprietarioAzienda;
+import application.controllerInterface.IProprietarioAzienda;
+import application.model.ProgrammaFedelta;
+import application.model.PuntoVendita;
 
+@RestController
 public class ControllerProprietarioAzienda implements IProprietarioAzienda {
 	
 	@Autowired
@@ -15,9 +19,12 @@ public class ControllerProprietarioAzienda implements IProprietarioAzienda {
 	@Autowired
 	ControllerPuntoVendita controllerPuntoVendita;
 	
+	@Autowired
+	ControllerCoalizione controllerCoalizione;
+	
 	@Override
-	public List<String> adesioneProgrammaFedelta() {
-		List<String> listaProgrammi = controllerProgrammaFedelta.adesioneProgrammaFedelta();
+	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
+		List<ProgrammaFedelta> listaProgrammi = controllerProgrammaFedelta.adesioneProgrammaFedelta();
 		return listaProgrammi;
 	}
 
@@ -39,6 +46,30 @@ public class ControllerProprietarioAzienda implements IProprietarioAzienda {
 	@Override
 	public String inserimentoInformazioniAggiuntive(HashMap<String, String> informazioniAggiuntive) {
 		String response = controllerPuntoVendita.inserimentoInformazioniAggiuntive(informazioniAggiuntive);
+		return response;
+	}
+
+	@Override
+	public String creaCoalizione() {
+		String response = controllerCoalizione.creaCoalizione();
+		return response;
+	}
+
+	@Override
+	public String inserimentoInformazioni(HashMap<String, String> informazioni) {
+		String response = controllerCoalizione.inserimentoInformazioni(informazioni);
+		return response;
+	}
+
+	@Override
+	public List<PuntoVendita> richiestaPuntiVenditaDisponibili() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String inoltroRichiestaAdesione(String adesione) {
+		String response = controllerCoalizione.inserimentoAdesione(adesione);
 		return response;
 	}
 }

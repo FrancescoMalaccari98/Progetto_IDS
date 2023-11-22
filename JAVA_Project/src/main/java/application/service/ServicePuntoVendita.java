@@ -1,4 +1,4 @@
-package service;
+package application.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,14 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.ProgrammaFedelta;
-import model.PuntoVendita;
-import repository.RepositoryPuntoVendita;
+import application.model.ProgrammaFedelta;
+import application.model.PuntoVendita;
+import application.repository.RepositoryPuntoVendita;
 
 @Service
 public class ServicePuntoVendita {
 	
-	@Autowired
 	RepositoryPuntoVendita repositoryPuntoVendita;
 	
 	public String controlloAdesioneEsistente(int idPuntoVendita,int idProgramma){

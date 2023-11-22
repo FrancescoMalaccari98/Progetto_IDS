@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 import java.util.List;
 
@@ -12,8 +12,9 @@ public class PuntoVendita {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
+    private int id;
+    String nome;
+    String descrizione;
 	List<Integer> idProgrammaFedelta;
 	
     public List<Integer> getProgrammaFedelta() {
