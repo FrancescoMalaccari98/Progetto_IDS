@@ -31,6 +31,9 @@ public class ProgrammaFedelta {
 		this.informazioniBase = informazioniBase;
 	}
 	
+	public ProgrammaFedelta() {
+	}
+	
 	public String getInformazioniDettagliate() {
 		return informazioniDettagliate;
 	}

@@ -16,7 +16,7 @@ public interface IProprietarioAzienda {
 	public List<ProgrammaFedelta> adesioneProgrammaFedelta();
 
 	@PostMapping("/selezioneProgramma")
-	public HashMap<String, String> selezioneProgramma(String programmaScelto);
+	public HashMap<String, String> selezioneProgramma(int idProgrammaScelto);
 	
 	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String,String> moduloAdesione);

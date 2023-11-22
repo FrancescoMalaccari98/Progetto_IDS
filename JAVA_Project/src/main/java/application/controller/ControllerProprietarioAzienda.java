@@ -29,8 +29,8 @@ public class ControllerProprietarioAzienda implements IProprietarioAzienda {
 	}
 
 	@Override
-	public HashMap<String,String>  selezioneProgramma(String programmiScelti) {
-		HashMap<String,String> modulo = controllerProgrammaFedelta.selezioneProgramma(programmiScelti);
+	public HashMap<String,String>  selezioneProgramma(int idProgrammaScelto) {
+		HashMap<String,String> modulo = controllerProgrammaFedelta.selezioneProgramma(idProgrammaScelto);
 		return modulo;
 	}
 

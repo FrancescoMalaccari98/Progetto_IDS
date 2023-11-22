@@ -1,7 +1,10 @@
 package application.service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +16,9 @@ import application.repository.RepositoryProgrammaFedelta;
 public class ServiceProgrammaFedelta {
 	
 	@Autowired
+	public
 	RepositoryProgrammaFedelta repositoryProgrammaFedelta;
-	
+
 	public List<ProgrammaFedelta> getListaProgrammiFedelta() {	
         // Recupera la lista di programmi fedeltà dal repository
         List<ProgrammaFedelta> programmiFedelta = repositoryProgrammaFedelta.findAll();
@@ -22,31 +26,57 @@ public class ServiceProgrammaFedelta {
         return programmiFedelta;	
 	}
 	
-	public HashMap<String,String> getModuloAdesione(String programmaScelto) {
+	public HashMap<String,String> getModuloAdesione(int idProgrammaScelto) {
 		HashMap<String,String> moduloAdesione= new HashMap<String,String>();
-		if(programmaScelto.equals("Programma 1")) {
-			moduloAdesione.put("Programma 1", "Modulo richiesta 1") ; //TODO Caricare Modulo dalle properties
-		} else {
-			moduloAdesione.put("Programma 2", "Modulo richiesta 2") ; //TODO Caricare Modulo dalle properties
-		}
 		
+		// Ottieni il percorso assoluto del file properties
+        String pathToFile = "src/main/resources/application.properties";
+        
+		// Carica il file properties in base all'id del programma scelto
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream(pathToFile)) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Estrai i valori dalle properties in base all'id del programma scelto
+        String chiaveProgramma = "programma" + idProgrammaScelto;
+        String moduloRichiesta = properties.getProperty(chiaveProgramma);
+
+        // Aggiungi la coppia chiave-valore all'HashMap
+        moduloAdesione.put(chiaveProgramma, moduloRichiesta);
+        System.out.println(moduloAdesione);
 		return moduloAdesione;
 	}
 	
 	public HashMap<String,String> creazioneProgrammaFedelta(){
-		HashMap<String,String> richiestaInformazioniBase = new HashMap<String,String>();
-		richiestaInformazioniBase.put("idProgrammaFedelta", "1");
-		richiestaInformazioniBase.put("nomeProgramma 1", "Nome programma");
-		richiestaInformazioniBase.put("informazioniBase", "Programma Fedeltà 1");
-		
-		richiestaInformazioniBase.put("idProgrammaFedelta", "2");
-		richiestaInformazioniBase.put("nomeProgramma 2", "Nome programma");
-		richiestaInformazioniBase.put("informazioniBase", "Programma Fedeltà 2");
+        
+        String pathToFile = "src/main/resources/application.properties";
 
-		return richiestaInformazioniBase;
+        // Carica il file properties
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream(pathToFile)) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Estrai le informazioni dai properties
+        HashMap<String, String> richiestaInformazioniBase = new HashMap<>();
+
+        String chiaveId = "moduloBase.idProgrammaFedelta";
+        String chiaveNome = "moduloBase.nomeProgramma";
+        String chiaveInformazioniBase = "moduloBase.informazioniBase";
+            
+        richiestaInformazioniBase.put(chiaveId, properties.getProperty(chiaveId));
+        richiestaInformazioniBase.put(chiaveNome, properties.getProperty(chiaveNome));
+        richiestaInformazioniBase.put(chiaveInformazioniBase, properties.getProperty(chiaveInformazioniBase));
+
+        return richiestaInformazioniBase;
 	}
 	
-	public String inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioneBase){
+	public HashMap<String,String>  inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioneBase){
 		String nomeProgramma = moduloInformazioneBase.get("nomeProgramma");
 		String informazioniBaseString = moduloInformazioneBase.get("informazioniBase");
 		
@@ -55,9 +85,31 @@ public class ServiceProgrammaFedelta {
 		try {
 			repositoryProgrammaFedelta.save(newProgramma);
 		} catch (Exception e) {
-			return "Errore nel salvataggio del nuovo Programma";
+			return null;
 		}
-		return "RichiestaInformazioniDettagliate";
+		
+		String pathToFile = "src/main/resources/application.properties";
+
+        // Carica il file properties
+        Properties properties = new Properties();
+        try (FileInputStream input = new FileInputStream(pathToFile)) {
+            properties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Estrai le informazioni dai properties
+        HashMap<String, String> richiestaInformazioniDettagliate = new HashMap<>();
+
+        String chiaveId = "moduloDettagliato.idProgrammaFedelta";
+        String chiaveNome = "moduloDettagliato.nomeProgramma";
+        String chiaveInformazioniBase = "moduloDettagliato.informazioniDettagliate";
+            
+        richiestaInformazioniDettagliate.put(chiaveId, properties.getProperty(chiaveId));
+        richiestaInformazioniDettagliate.put(chiaveNome, properties.getProperty(chiaveNome));
+        richiestaInformazioniDettagliate.put(chiaveInformazioniBase, properties.getProperty(chiaveInformazioniBase));
+        
+		return richiestaInformazioniDettagliate;
 	}
 	
 	
@@ -65,7 +117,7 @@ public class ServiceProgrammaFedelta {
 		int idProgrammaFedelta = Integer.parseInt( moduloInformazioniDettagliate.get("idProgrammaFedelta"));
 		String informazioniDettagliateString = moduloInformazioniDettagliate.get("informazioniDettagliate");
 
-		ProgrammaFedelta programmaFedelta = repositoryProgrammaFedelta.findProgrammaFedeltaById((long) idProgrammaFedelta);
+		ProgrammaFedelta programmaFedelta = repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta);
 		
 		programmaFedelta.setInformazioniDettagliate(informazioniDettagliateString);
 		

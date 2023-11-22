@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import application.model.ProgrammaFedelta;
 
 @Repository
-public interface RepositoryProgrammaFedelta extends JpaRepository<ProgrammaFedelta, Long> {
+public interface RepositoryProgrammaFedelta extends JpaRepository<ProgrammaFedelta, Integer> {
 	
-	ProgrammaFedelta findProgrammaFedeltaById(Long id);
+	ProgrammaFedelta findProgrammaFedeltaById(int id);
 
 }

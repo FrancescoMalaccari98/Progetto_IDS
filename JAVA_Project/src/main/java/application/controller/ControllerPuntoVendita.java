@@ -21,8 +21,8 @@ public class ControllerPuntoVendita {
 	}
 	
 	public String inserimentoInformazioniAggiuntive(HashMap<String,String> informazioniAggiuntive){
-		Long idPuntoVendita = Long.parseLong(informazioniAggiuntive.get("idPuntoVendita"));
-		Long idProgramma = Long.parseLong(informazioniAggiuntive.get("idProgramma"));
+		int idPuntoVendita = Integer.parseInt(informazioniAggiuntive.get("idPuntoVendita"));
+		int idProgramma = Integer.parseInt(informazioniAggiuntive.get("idProgramma"));
 		String checkAdesione = servicePuntoVendita.aggiuntaProgramma(idPuntoVendita,idProgramma);
 		return checkAdesione;
 	}

@@ -12,7 +12,7 @@ public class ServiceCliente {
 	@Autowired
 	RepositoryCliente repositoryCliente;
 	
-	public boolean controlloDati(String nomeUtente,String password) {
+	public boolean getDati(String nomeUtente,String password) {
 		Cliente cliente = repositoryCliente.findByNomeUtenteAndPassword(nomeUtente,password);
 		
 		if (cliente == null) {
@@ -21,5 +21,8 @@ public class ServiceCliente {
 		}
 		return true;
 	}
-
+	
+	public Cliente getClienteById(int id) {
+		return repositoryCliente.findClienteById(id);
+	}
 }

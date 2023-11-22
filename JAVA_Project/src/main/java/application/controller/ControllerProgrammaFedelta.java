@@ -21,8 +21,8 @@ public class ControllerProgrammaFedelta {
 		return listaProgrammi;
 	}
 
-	public HashMap<String,String> selezioneProgramma(String programmaScelto) {
-		HashMap<String,String> modulo = serviceProgrammaFedelta.getModuloAdesione(programmaScelto);
+	public HashMap<String,String> selezioneProgramma(int idProgrammaScelto) {
+		HashMap<String,String> modulo = serviceProgrammaFedelta.getModuloAdesione(idProgrammaScelto);
 		return modulo;
 	}
 
@@ -30,7 +30,7 @@ public class ControllerProgrammaFedelta {
 		return serviceProgrammaFedelta.creazioneProgrammaFedelta();
 	}
 	
-	public String inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase){
+	public HashMap<String,String>  inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase){
 		return serviceProgrammaFedelta.inserimentoInformazioniBase(moduloInformazioniBase);
 	}
 	

@@ -16,6 +16,7 @@ public class PuntoVendita {
     String nome;
     String descrizione;
 	List<Integer> idProgrammaFedelta;
+	List<Integer> idCatalogoPremi; 
 	
     public List<Integer> getProgrammaFedelta() {
 		return idProgrammaFedelta;

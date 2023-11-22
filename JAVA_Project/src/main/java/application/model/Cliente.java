@@ -12,7 +12,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nomeUtente;
+	private String nomeUtente;
     private String password;
     
     
@@ -20,6 +20,10 @@ public class Cliente {
 		super();
 		this.nomeUtente = nomeUtente;
 		this.password = password;
+	}
+	
+    public int getId() {
+		return id;
 	}
 
 	public String getNomeUtente() {

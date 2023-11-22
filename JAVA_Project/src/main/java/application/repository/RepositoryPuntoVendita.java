@@ -8,19 +8,18 @@ import org.springframework.stereotype.Repository;
 import application.model.PuntoVendita;
 
 @Repository
-public interface RepositoryPuntoVendita  extends JpaRepository<PuntoVendita, Long>{
+public interface RepositoryPuntoVendita  extends JpaRepository<PuntoVendita, Integer>{
 	
-	PuntoVendita findPuntoVenditaById(Long id);
+	PuntoVendita findPuntoVenditaById(int id);
 	
 	
 	// Metodo per aggiungere l'id del programma al PuntoVendita
-	default void aggiungiIdProgrammaAlPuntoVendita(Long idPuntoVendita, Long idProgramma) {
+	default void aggiungiIdProgrammaAlPuntoVendita(int idPuntoVendita, int idProgramma) {
 		PuntoVendita puntoVendita = findPuntoVenditaById(idPuntoVendita);
 
 		if (puntoVendita != null) {
 			List<Integer> listaProgrammi = puntoVendita.getProgrammaFedelta();
-			Integer integerId = idProgramma.intValue();
-			listaProgrammi.add(integerId);
+			listaProgrammi.add(idProgramma);
 			puntoVendita.setProgrammaFedelta(listaProgrammi);
 			save(puntoVendita);
 		}

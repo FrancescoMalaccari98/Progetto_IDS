@@ -12,7 +12,7 @@ public interface IAdmin {
 	public HashMap<String,String> creazioneProgrammaFedelta(String nomeUtente,String Password);
 	
 	@PostMapping("/inserimentoInformazioniBase")
-	public String inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase);
+	public HashMap<String,String>  inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase);
 	
 	@PostMapping("/inserimentoInformazioniDettagliate")
 	public String inserimentoInformazioniDettagliate(HashMap<String,String> moduloInformazioniDettagliate);

@@ -19,7 +19,7 @@ public class ControllerAdmin implements IAdmin{
 	}
 
 	@Override
-	public String inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase) {
+	public HashMap<String,String> inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase) {
 		return controllerProgrammaFedelta.inserimentoInformazioniBase(moduloInformazioniBase);
 	}
 

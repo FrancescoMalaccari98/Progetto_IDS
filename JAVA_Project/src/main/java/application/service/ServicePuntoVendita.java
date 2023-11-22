@@ -1,12 +1,9 @@
 package application.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import application.model.ProgrammaFedelta;
 import application.model.PuntoVendita;
 import application.repository.RepositoryPuntoVendita;
 
@@ -16,8 +13,7 @@ public class ServicePuntoVendita {
 	RepositoryPuntoVendita repositoryPuntoVendita;
 	
 	public String controlloAdesioneEsistente(int idPuntoVendita,int idProgramma){
-		long longId = idPuntoVendita;
-		PuntoVendita puntoVendita= repositoryPuntoVendita.findPuntoVenditaById(longId);
+		PuntoVendita puntoVendita= repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
 		
 		if(puntoVendita != null) {
 			List<Integer> programmmiFedelta = puntoVendita.getProgrammaFedelta();
@@ -32,7 +28,7 @@ public class ServicePuntoVendita {
 		return "RichiestaInformazioniAggiuntive";
 	}
 	
-	public String aggiuntaProgramma(Long idProgramma,Long idPuntoVendita){
+	public String aggiuntaProgramma(int idProgramma,int idPuntoVendita){
 		try {
 			repositoryPuntoVendita.aggiungiIdProgrammaAlPuntoVendita(idProgramma,idPuntoVendita);
 		} catch (Exception e) {
