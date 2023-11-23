@@ -1,5 +1,7 @@
 package application.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,9 @@ public class ServiceCartaFedelta {
 		 CartaFedelta cartaCliente = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCartaFedelta);
 		 cartaCliente.setPunti(cartaCliente.getPunti()+punti);
 		 return "Punti Aggiornati";
+	}
+	
+	public List<CartaFedelta> getListaCartaFedelta(int idProgramma) {
+		return repositoryCartaFedelta.findCartaFedeltabyIdProgramma(idProgramma);
 	}
 }

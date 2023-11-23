@@ -14,7 +14,7 @@ public class Cliente {
 
 	private String nomeUtente;
     private String password;
-    
+    private int cashBack;
     
 	public Cliente(String nomeUtente, String password) {
 		super();
@@ -22,7 +22,15 @@ public class Cliente {
 		this.password = password;
 	}
 	
-    public int getId() {
+    public int getCashBack() {
+		return cashBack;
+	}
+
+	public void setCashBack(int cashBack) {
+		this.cashBack = cashBack;
+	}
+
+	public int getId() {
 		return id;
 	}
 
