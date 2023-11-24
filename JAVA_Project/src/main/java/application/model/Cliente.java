@@ -14,7 +14,7 @@ public class Cliente {
 
 	private String nomeUtente;
     private String password;
-    private int cashBack;
+    private String programmaFedeltaType;
     
 	public Cliente(String nomeUtente, String password) {
 		super();
@@ -22,13 +22,16 @@ public class Cliente {
 		this.password = password;
 	}
 	
-    public int getCashBack() {
-		return cashBack;
+	
+	public String getProgrammaFedeltaType() {
+		return programmaFedeltaType;
 	}
 
-	public void setCashBack(int cashBack) {
-		this.cashBack = cashBack;
+
+	public void setProgrammaFedeltaType(String programmaFedeltaType) {
+		this.programmaFedeltaType = programmaFedeltaType;
 	}
+
 
 	public int getId() {
 		return id;

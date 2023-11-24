@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import application.model.CartaFedelta;
+import application.model.Cliente;
 import application.repository.RepositoryCartaFedelta;
 
 @Service
@@ -26,5 +27,30 @@ public class ServiceCartaFedelta {
 	
 	public List<CartaFedelta> getListaCartaFedelta(int idProgramma) {
 		return repositoryCartaFedelta.findCartaFedeltabyIdProgramma(idProgramma);
+	}
+	
+	public int getCashBack(int idCliente) {
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		return cartaFedelta.getCashBack();
+	}
+
+	public boolean verificaCashBack(int importoCashBack, int idCliente) {
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		if(importoCashBack>cartaFedelta.getCashBack()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean updateCashBack(int contoCorrente,int idCliente,int importoCashBack){
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		try {
+			cartaFedelta.setCashBack(cartaFedelta.getCashBack()-importoCashBack);
+			repositoryCartaFedelta.save(cartaFedelta);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -22,4 +22,16 @@ public class ControllerCartaFedelta {
 	public List<CartaFedelta> getListaCartaFedelta(int idProgramma){
 		return serviceCartaFedelta.getListaCartaFedelta(idProgramma);
 	}
+
+	public boolean verificaDisponibilità(int importoCashBack, int idCliente) {
+		return serviceCartaFedelta.verificaCashBack(importoCashBack, idCliente);
+	}
+
+	public boolean inserisceContoCorrente(int contoCorrente, int idCliente, int importoCashBack) {
+		return serviceCartaFedelta.updateCashBack(contoCorrente, idCliente, importoCashBack);
+	}
+
+	public int recuperaSaldoCashbackDisponibile(int idCliente) {
+		return serviceCartaFedelta.getCashBack(idCliente);
+	}
 }

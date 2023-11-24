@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import application.service.ServiceCliente;
 import application.controllerInterface.ICliente;
 import application.model.CartaFedelta;
+import application.model.Cliente;
 
 @RestController
 public class ControllerCliente implements ICliente{
@@ -31,8 +32,14 @@ public class ControllerCliente implements ICliente{
 	
 	@Override
 	public String acquistoProdotto(List<Integer> idProdotto,int idPuntoVendita,int idCliente) {
+		 Cliente cliente = serviceCliente.getClienteById(idCliente);
 		 int punti = controllerProdotto.acquistoProdotto(idProdotto,idPuntoVendita,idCliente);
-		 controllerCartaFedelta.updatePunti(idCliente,punti);
+		 if(cliente.getProgrammaFedeltaType().equals("Cliente CashBack"))
+			 //aggiungo 10 punti perchè cliente CashBack
+			 controllerCartaFedelta.updatePunti(idCliente,punti+10);
+		 if(cliente.getProgrammaFedeltaType().equals("Cliente Punti"))
+			 //aggiungo 20 punti perchè cliente Punti
+			 controllerCartaFedelta.updatePunti(idCliente,punti+20);
 		 return "Punti Aggiornati";
 	}
 
@@ -43,13 +50,13 @@ public class ControllerCliente implements ICliente{
 
 	@Override
 	public int richiestaCashback(int idCliente) {
-		return serviceCliente.getCashBack(idCliente);
+		return controllerCartaFedelta.recuperaSaldoCashbackDisponibile(idCliente);
 	}
 
 	@Override
 	public String inserisceImporto(int importoCashBack,int idCliente) {
-		if(serviceCliente.verificaDisponibilità(importoCashBack,idCliente)) {
-			return "Avvio Pagamento";
+		if(controllerCartaFedelta.verificaDisponibilità(importoCashBack,idCliente)) {
+			return "avvioPagamento";
 		} else {
 			return "Avviso importo non disponibile";
 		}
@@ -57,9 +64,9 @@ public class ControllerCliente implements ICliente{
 
 	@Override
 	public String inserisceContoCorrente(int contoCorrente, int idCliente,int importoCashBack) {
-		if(serviceCliente.updateCashBack(contoCorrente,idCliente,importoCashBack))
-			return "notifica Pagamento";
-		return "Errore";
+		if(controllerCartaFedelta.inserisceContoCorrente(contoCorrente,idCliente,importoCashBack))
+			return "notificaPagamento";
+		return "ErrorePagamento";
 	}
 
 }

@@ -16,7 +16,8 @@ public class CartaFedelta {
     private int punti;
     private int idProgrammaFedelta;
 	private int idCliente;
-    
+    private int cashBack;
+
     
 	public String getDescrizione() {
 		return descrizione;
@@ -45,5 +46,10 @@ public class CartaFedelta {
 	public void setIdProgrammaFedelta(int idProgrammaFedelta) {
 		this.idProgrammaFedelta = idProgrammaFedelta;
 	}
-
+    public int getCashBack() {
+		return cashBack;
+	}
+	public void setCashBack(int cashBack) {
+		this.cashBack = cashBack;
+	}
 }
