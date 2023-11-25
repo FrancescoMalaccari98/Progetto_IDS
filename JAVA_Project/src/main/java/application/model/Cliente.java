@@ -14,24 +14,12 @@ public class Cliente {
 
 	private String nomeUtente;
     private String password;
-    private String programmaFedeltaType;
     
 	public Cliente(String nomeUtente, String password) {
 		super();
 		this.nomeUtente = nomeUtente;
 		this.password = password;
 	}
-	
-	
-	public String getProgrammaFedeltaType() {
-		return programmaFedeltaType;
-	}
-
-
-	public void setProgrammaFedeltaType(String programmaFedeltaType) {
-		this.programmaFedeltaType = programmaFedeltaType;
-	}
-
 
 	public int getId() {
 		return id;

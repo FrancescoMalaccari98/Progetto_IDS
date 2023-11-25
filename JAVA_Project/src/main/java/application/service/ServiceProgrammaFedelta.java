@@ -128,4 +128,8 @@ public class ServiceProgrammaFedelta {
 		}
 		return "RichiestaInformazioniDettagliate";
 	}
+
+	public ProgrammaFedelta getProgrammaFedelta(int idProgrammaFedelta) {
+		return repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta);
+	}
 }

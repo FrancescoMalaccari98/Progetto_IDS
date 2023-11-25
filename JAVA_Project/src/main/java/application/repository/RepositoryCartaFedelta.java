@@ -10,7 +10,7 @@ import application.model.CartaFedelta;
 @Repository
 public interface RepositoryCartaFedelta extends JpaRepository<CartaFedelta, Integer>{
 	
-	CartaFedelta findCartaFedeltabyId(int id);
+	CartaFedelta findById(int id);
 	
 	CartaFedelta findCartaFedeltabyIdCliente(int idCliente);
 	

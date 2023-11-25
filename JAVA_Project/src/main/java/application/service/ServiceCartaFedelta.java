@@ -16,11 +16,14 @@ public class ServiceCartaFedelta {
 	RepositoryCartaFedelta repositoryCartaFedelta;
 	
 	public CartaFedelta getCartaFedelta(int idCartaFedelta) {
-		return repositoryCartaFedelta.findCartaFedeltabyId(idCartaFedelta);
+		return repositoryCartaFedelta.findById(idCartaFedelta);
 	}
 	
-	public String updatePunti(int idCartaFedelta,int punti) {
-		 CartaFedelta cartaCliente = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCartaFedelta);
+	/*
+	 * Sets the cashback after a product purchase.
+	 */
+	public String setCashBack(int idCartaFedelta,int punti) {
+		 CartaFedelta cartaCliente = repositoryCartaFedelta.findById(idCartaFedelta);
 		 cartaCliente.setPunti(cartaCliente.getPunti()+punti);
 		 return "Punti Aggiornati";
 	}
@@ -43,6 +46,9 @@ public class ServiceCartaFedelta {
 		}
 	}
 	
+	/*
+	 * Reflects changes in the cashback balance post withdrawal request.
+	 */
 	public boolean updateCashBack(int contoCorrente,int idCliente,int importoCashBack){
 		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
 		try {
@@ -52,5 +58,9 @@ public class ServiceCartaFedelta {
 			return false;
 		}
 		return true;
+	}
+
+	public CartaFedelta getCartaFedeltaByIdCliente(int idCliente) {
+		return repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
 	}
 }

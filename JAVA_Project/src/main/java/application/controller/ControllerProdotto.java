@@ -13,7 +13,7 @@ public class ControllerProdotto {
 	@Autowired
 	ServiceProdotto serviceProdotto;
 	
-	public int acquistoProdotto(List<Integer> idProdotto,int idPuntoVendita,int idCliente) {
+	public int registraAcquistoProdotto(List<Integer> idProdotto,int idPuntoVendita,int idCliente) {
 		 return serviceProdotto.updateProdotto(idProdotto,idPuntoVendita,idCliente);
 	}
 

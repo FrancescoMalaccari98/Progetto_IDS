@@ -32,14 +32,8 @@ public class ControllerCliente implements ICliente{
 	
 	@Override
 	public String acquistoProdotto(List<Integer> idProdotto,int idPuntoVendita,int idCliente) {
-		 Cliente cliente = serviceCliente.getClienteById(idCliente);
-		 int punti = controllerProdotto.acquistoProdotto(idProdotto,idPuntoVendita,idCliente);
-		 if(cliente.getProgrammaFedeltaType().equals("Cliente CashBack"))
-			 //aggiungo 10 punti perchè cliente CashBack
-			 controllerCartaFedelta.updatePunti(idCliente,punti+10);
-		 if(cliente.getProgrammaFedeltaType().equals("Cliente Punti"))
-			 //aggiungo 20 punti perchè cliente Punti
-			 controllerCartaFedelta.updatePunti(idCliente,punti+20);
+		 int punti = controllerProdotto.registraAcquistoProdotto(idProdotto,idPuntoVendita,idCliente);		
+		 controllerCartaFedelta.updateCashBack(idCliente,punti);
 		 return "Punti Aggiornati";
 	}
 
