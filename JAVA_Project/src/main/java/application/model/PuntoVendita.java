@@ -2,6 +2,7 @@ package application.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,9 +14,13 @@ public class PuntoVendita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     String nome;
+    @Column
     String descrizione;
+    @Column
 	List<Integer> idProgrammaFedelta;
+    @Column
 	List<Integer> idCatalogoPremi; 
 	
     public List<Integer> getProgrammaFedelta() {

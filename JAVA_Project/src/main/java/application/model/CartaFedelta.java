@@ -17,8 +17,14 @@ public class CartaFedelta {
     private int idProgrammaFedelta;
 	private int idCliente;
     private int cashBack;
-
+    private int livello;
     
+	public int getLivello() {
+		return livello;
+	}
+	public void setLivello(int livello) {
+		this.livello = livello;
+	}
 	public String getDescrizione() {
 		return descrizione;
 	}

@@ -3,11 +3,9 @@ package application.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import application.model.PuntoVendita;
 
-@Repository
 public interface RepositoryPuntoVendita  extends JpaRepository<PuntoVendita, Integer>{
 	
 	PuntoVendita findPuntoVenditaById(int id);

@@ -28,17 +28,17 @@ public class ServiceCartaFedelta {
 		 return "Punti Aggiornati";
 	}
 	
-	public List<CartaFedelta> getListaCartaFedelta(int idProgramma) {
-		return repositoryCartaFedelta.findCartaFedeltabyIdProgramma(idProgramma);
+	public List<CartaFedelta> getListaCartaFedelta(int idProgrammaFedelta) {
+		return repositoryCartaFedelta.findByIdProgrammaFedelta(idProgrammaFedelta);
 	}
 	
 	public int getCashBack(int idCliente) {
-		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		return cartaFedelta.getCashBack();
 	}
 
 	public boolean verificaCashBack(int importoCashBack, int idCliente) {
-		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		if(importoCashBack>cartaFedelta.getCashBack()) {
 			return false;
 		} else {
@@ -50,7 +50,7 @@ public class ServiceCartaFedelta {
 	 * Reflects changes in the cashback balance post withdrawal request.
 	 */
 	public boolean updateCashBack(int contoCorrente,int idCliente,int importoCashBack){
-		CartaFedelta cartaFedelta = repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		try {
 			cartaFedelta.setCashBack(cartaFedelta.getCashBack()-importoCashBack);
 			repositoryCartaFedelta.save(cartaFedelta);
@@ -61,6 +61,6 @@ public class ServiceCartaFedelta {
 	}
 
 	public CartaFedelta getCartaFedeltaByIdCliente(int idCliente) {
-		return repositoryCartaFedelta.findCartaFedeltabyIdCliente(idCliente);
+		return repositoryCartaFedelta.findByIdCliente(idCliente);
 	}
 }

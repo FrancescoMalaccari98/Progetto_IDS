@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @SpringBootApplication
 @CrossOrigin
 @ComponentScan(basePackages = {"application"})
-@EnableJpaRepositories(basePackages = "application.repository")
-@EntityScan(basePackages = "application.model")
+@EnableJpaRepositories(basePackages = "application")
+@EntityScan(basePackages = "application")
 public class mainClass {
 
     public static void main(String[] args) {

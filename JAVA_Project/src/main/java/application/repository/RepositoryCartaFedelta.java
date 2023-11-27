@@ -3,16 +3,14 @@ package application.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import application.model.CartaFedelta;
 
-@Repository
 public interface RepositoryCartaFedelta extends JpaRepository<CartaFedelta, Integer>{
 	
 	CartaFedelta findById(int id);
 	
-	CartaFedelta findCartaFedeltabyIdCliente(int idCliente);
+	CartaFedelta findByIdCliente(int idCliente);
 	
-	List<CartaFedelta> findCartaFedeltabyIdProgramma(int idProgramma);
+	List<CartaFedelta> findByIdProgrammaFedelta(int idProgrammaFedelta);
 }
