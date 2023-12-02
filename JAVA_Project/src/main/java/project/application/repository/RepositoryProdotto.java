@@ -8,5 +8,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface RepositoryProdotto  extends JpaRepository<Prodotto, Long> {
 	
+	Prodotto findById(int id);
+
 	Prodotto findProdottoById(int idProdotto);
 }

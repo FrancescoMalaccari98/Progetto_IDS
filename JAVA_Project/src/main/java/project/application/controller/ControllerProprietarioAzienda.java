@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.application.model.Operatore;
 import project.application.model.ProgrammaFedelta;
-import project.application.model.PuntoVendita;
 
 @RestController
+@RequestMapping("/IProprietarioAzienda")
 public class ControllerProprietarioAzienda {
 	
 	@Autowired
@@ -21,6 +24,11 @@ public class ControllerProprietarioAzienda {
 	@Autowired
 	ControllerCoalizione controllerCoalizione;
 	
+	@Autowired	
+	ControllerCliente controllerCliente;
+	
+	@Autowired
+	ControllerOperatore controllerOperatore;
 	
 	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
 		List<ProgrammaFedelta> listaProgrammi = controllerProgrammaFedelta.adesioneProgrammaFedelta();
@@ -59,16 +67,30 @@ public class ControllerProprietarioAzienda {
 		String response = controllerCoalizione.inserimentoInformazioni(informazioni);
 		return response;
 	}
-
-	
-	public List<PuntoVendita> richiestaPuntiVenditaDisponibili() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 	public String inoltroRichiestaAdesione(String adesione) {
 		String response = controllerCoalizione.inserimentoAdesione(adesione);
 		return response;
 	}
+	
+	@PostMapping("/accessoPannelloDiControllo")
+	public String accessoPannelloDiControllo(String nomeUtente,String password) {
+		String cliente =controllerCliente.inserimentoCredenziali(nomeUtente,password);
+		if(cliente != null && cliente.equals("Autenticato"))
+			return "accessoConsentito";
+		return "accessoNegato";
+	}
+	
+	@PostMapping("/richiestaListaDipendeti")
+	public List<Operatore> richiestaListaDipendeti(int idPuntoVendita){
+		List<Operatore> response = controllerOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
+		return response;
+	}
+	
+	@PostMapping("/selezionaCandidatoAdmin")
+	public String selezionaCandidatoAdmin(int idOperatore){
+		String response = controllerOperatore.setAdmin(idOperatore); 
+		return response;
+	}
+	
 }
