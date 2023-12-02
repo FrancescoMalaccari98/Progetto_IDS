@@ -17,13 +17,13 @@ public class PuntoVendita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    String nome;
+    private String nome;
     @Column
-    String descrizione;
+    private String descrizione;
     @Column
-	List<Integer> idProgrammaFedelta;
+    private List<Integer> idProgrammaFedelta;
     @Column
-	List<Integer> idCatalogoPremi; 
+    private List<Integer> idCatalogoPremi; 
 	
     public List<Integer> getProgrammaFedelta() {
 		return idProgrammaFedelta;

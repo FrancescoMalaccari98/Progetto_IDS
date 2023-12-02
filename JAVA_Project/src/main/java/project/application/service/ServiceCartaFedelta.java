@@ -63,4 +63,8 @@ public class ServiceCartaFedelta {
 	public CartaFedelta getCartaFedeltaByIdCliente(int idCliente) {
 		return repositoryCartaFedelta.findByIdCliente(idCliente);
 	}
+
+	public List<CartaFedelta> getClassificaCartaFedelta(int idProgramma) {
+		return repositoryCartaFedelta.findByIdProgrammaFedelta(idProgramma);
+	}
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.application.model.CartaFedelta;
-import project.application.model.Cliente;
 import project.application.model.ProgrammaFedelta;
 import project.application.service.ServiceCartaFedelta;
 import project.application.service.ServiceCliente;
@@ -50,5 +49,9 @@ public class ControllerCartaFedelta {
 
 	public int recuperaSaldoCashbackDisponibile(int idCliente) {
 		return serviceCartaFedelta.getCashBack(idCliente);
+	}
+
+	public List<CartaFedelta> getClassificaCartaFedelta(int idProgramma) {
+		return serviceCartaFedelta.getClassificaCartaFedelta(idProgramma);
 	}
 }

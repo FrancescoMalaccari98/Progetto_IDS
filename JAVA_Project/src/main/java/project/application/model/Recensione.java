@@ -8,43 +8,33 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Prodotto")
-public class Prodotto {
+@Table(name="Recensione")
+public class Recensione {
 	
-	
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
+	int id;
     @Column
-    private String nome;
+    private String descrizione;
     @Column
-    private int prezzo;
-    @Column
-    private String informazioniProdotto;
+    private int valore;
     @Column
     private int idPuntoVendita;
     
-	public String getInformazioniProdotto() {
-		return informazioniProdotto;
-	}
-	public void setInformazioniProdotto(String informazioniProdotto) {
-		this.informazioniProdotto = informazioniProdotto;
-	}
 	public int getId() {
 		return id;
 	}
-	public String getNome() {
-		return nome;
+	public String getDescrizione() {
+		return descrizione;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
 	}
-	public int getPrezzo() {
-		return prezzo;
+	public int getValore() {
+		return valore;
 	}
-	public void setPrezzo(int prezzo) {
-		this.prezzo = prezzo;
+	public void setValore(int valore) {
+		this.valore = valore;
 	}
 	public int getIdPuntoVendita() {
 		return idPuntoVendita;
@@ -52,6 +42,5 @@ public class Prodotto {
 	public void setIdPuntoVendita(int idPuntoVendita) {
 		this.idPuntoVendita = idPuntoVendita;
 	}
-
-
+    
 }
