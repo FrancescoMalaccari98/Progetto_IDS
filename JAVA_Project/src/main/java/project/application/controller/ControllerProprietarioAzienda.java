@@ -30,18 +30,19 @@ public class ControllerProprietarioAzienda {
 	@Autowired
 	ControllerOperatore controllerOperatore;
 	
+	@PostMapping("/adesioneProgrammaFedelta")
 	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
 		List<ProgrammaFedelta> listaProgrammi = controllerProgrammaFedelta.adesioneProgrammaFedelta();
 		return listaProgrammi;
 	}
 
-	
+	@PostMapping("/selezioneProgramma")
 	public HashMap<String,String>  selezioneProgramma(int idProgrammaScelto) {
 		HashMap<String,String> modulo = controllerProgrammaFedelta.selezioneProgramma(idProgrammaScelto);
 		return modulo;
 	}
 
-	
+	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String, String> moduloAdesione) {
 		String response = controllerPuntoVendita.compilazioneModuloDiAdesione(moduloAdesione);
 		if(response.equals("RichiestaInformazioniAggiuntive"))
@@ -50,24 +51,25 @@ public class ControllerProprietarioAzienda {
 		return response;
 	}
 	
-	
+	@PostMapping("/inserimentoInformazioniAggiuntive")
 	public String inserimentoInformazioniAggiuntive(HashMap<String, String> informazioniAggiuntive) {
 		String response = controllerPuntoVendita.inserimentoInformazioniAggiuntive(informazioniAggiuntive);
 		return response;
 	}
 
-	
+	@PostMapping("/creaCoalizione")
 	public String creaCoalizione() {
 		String response = controllerCoalizione.creaCoalizione();
 		return response;
 	}
 
-	
+	@PostMapping("/inserimentoInformazioni")
 	public String inserimentoInformazioni(HashMap<String, String> informazioni) {
 		String response = controllerCoalizione.inserimentoInformazioni(informazioni);
 		return response;
 	}
 	
+	@PostMapping("/inoltroRichiestaAdesione")
 	public String inoltroRichiestaAdesione(String adesione) {
 		String response = controllerCoalizione.inserimentoAdesione(adesione);
 		return response;

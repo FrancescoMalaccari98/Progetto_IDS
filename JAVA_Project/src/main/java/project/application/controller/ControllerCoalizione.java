@@ -3,20 +3,25 @@ package project.application.controller;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.application.service.ServiceCoalizione;
 
 @RestController
+@RequestMapping("/ICoalizione")
 public class ControllerCoalizione {
 	
 	@Autowired
 	ServiceCoalizione serviceCoalizione;
 	
+	@PostMapping("/creaCoalizione")
 	public String creaCoalizione(){
 		return "richiestaInformazioni";
 	}
 	
+	@PostMapping("/inserimentoInformazioni")
 	public String inserimentoInformazioni(HashMap<String,String> informazioni){		
 		boolean checkCoalizione = serviceCoalizione.controlloCoalizione(informazioni);
 		if(checkCoalizione == true)
@@ -25,6 +30,7 @@ public class ControllerCoalizione {
 			return "Coalizione creata";
 	}
 
+	@PostMapping("/inserimentoAdesione")
 	public String inserimentoAdesione(String  adesione) {
 		return serviceCoalizione.inserimentoAdesione(adesione);
 	}

@@ -1,18 +1,23 @@
 package project.application.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.application.service.ServicePuntoVendita;
 
 @RestController
+@RequestMapping("/IPuntoVendita")
 public class ControllerPuntoVendita {
 
 	@Autowired
 	ServicePuntoVendita servicePuntoVendita;
 	
+	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String,String> moduloAdesione){
 		int idPuntoVendita = Integer.parseInt(moduloAdesione.get("idPuntoVendita"));
 		int idProgramma = Integer.parseInt(moduloAdesione.get("idProgramma"));
@@ -20,10 +25,21 @@ public class ControllerPuntoVendita {
 		return checkAdesione;
 	}
 	
+	@PostMapping("/inserimentoInformazioniAggiuntive")
 	public String inserimentoInformazioniAggiuntive(HashMap<String,String> informazioniAggiuntive){
 		int idPuntoVendita = Integer.parseInt(informazioniAggiuntive.get("idPuntoVendita"));
 		int idProgramma = Integer.parseInt(informazioniAggiuntive.get("idProgramma"));
 		String checkAdesione = servicePuntoVendita.aggiuntaProgramma(idPuntoVendita,idProgramma);
 		return checkAdesione;
+	}
+	
+	@PostMapping("/riscattoPremi")
+	public List<Integer> riscattoPremi(int idPuntoVendita){
+		List<Integer> listaPremi = servicePuntoVendita.getCatalogoPremi(idPuntoVendita);
+		return listaPremi;
+	}
+
+	public String inserimentoRecensione(int value,String descrizione, int idPuntoVendita) {
+		return servicePuntoVendita.inserimentoRecensione(value,descrizione,idPuntoVendita);
 	}
 }

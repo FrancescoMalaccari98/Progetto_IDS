@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import project.application.model.CartaFedelta;
 import project.application.model.Cliente;
+import project.application.model.Premi;
 import project.application.repository.RepositoryCartaFedelta;
 
 @Service
@@ -66,5 +67,29 @@ public class ServiceCartaFedelta {
 
 	public List<CartaFedelta> getClassificaCartaFedelta(int idProgramma) {
 		return repositoryCartaFedelta.findByIdProgrammaFedelta(idProgramma);
+	}
+	
+	public boolean controlloPunti(Premi premio,int idCliente) {
+	CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
+	if(cartaFedelta.getPunti()>premio.getPuntiRiscatto())
+		return true;
+	return false;
+	}
+
+	public boolean verificaCliente(int idCliente) {
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
+		if(cartaFedelta == null)
+			return false;
+		return true;
+	}
+
+	public CartaFedelta insertCartaVip(int idCliente, String type) {
+		CartaFedelta cartaFedelta = new CartaFedelta();
+		cartaFedelta.setIdCliente(idCliente);
+		//1 indica il programma fedeltà VIP
+		cartaFedelta.setIdProgrammaFedelta(1);
+		cartaFedelta.setDescrizione("Programma VIP");
+		repositoryCartaFedelta.save(cartaFedelta);
+		return cartaFedelta;
 	}
 }

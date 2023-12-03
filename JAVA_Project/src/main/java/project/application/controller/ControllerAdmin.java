@@ -3,9 +3,12 @@ package project.application.controller;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/IAdmin")
 public class ControllerAdmin {
 	
 	@Autowired
@@ -14,28 +17,28 @@ public class ControllerAdmin {
 	@Autowired
 	ControllerSconto controllerSconto;
 
-	
+	@PostMapping("/creazioneProgrammaFedelta")
 	public HashMap<String,String> creazioneProgrammaFedelta(String nomeUtente, String Password) {
 		return controllerProgrammaFedelta.creazioneProgrammaFedelta();
 	}
 
-	
+	@PostMapping("/inserimentoInformazioniBase")
 	public HashMap<String,String> inserimentoInformazioniBase(HashMap<String,String>  moduloInformazioniBase) {
 		return controllerProgrammaFedelta.inserimentoInformazioniBase(moduloInformazioniBase);
 	}
 
-	
+	@PostMapping("/inserimentoInformazioniDettagliate")
 	public String inserimentoInformazioniDettagliate(HashMap<String, String> moduloInfomrmazioniDettagliate) {
 		return controllerProgrammaFedelta.inserimentoInformazioniDetagliate(moduloInfomrmazioniDettagliate);
 
 	}
 
-	
+	@PostMapping("/creaCodiceSconto")
 	public String creaCodiceSconto() {
 		return controllerSconto.creaCodiceSconto();
 	}
 
-	
+	@PostMapping("/inserimentoInfoSconto")
 	public String inserimentoInfoSconto(HashMap<String,String>  infoSconto, int idPuntoVendita) {
 		return controllerSconto.inserimentoSconto(infoSconto,idPuntoVendita);
 	}
