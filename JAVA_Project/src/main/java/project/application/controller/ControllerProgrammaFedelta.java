@@ -49,9 +49,8 @@ public class ControllerProgrammaFedelta {
 		return serviceProgrammaFedelta.inserimentoInformazioniDetagliate(moduloInformazioniDettagliate);
 	}
 
-	public List<String> getListaServiziEsclusivi() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<String> getListaServiziEsclusivi(int idProgrammaFedelta) {
+		return serviceProgrammaFedelta.getListaServiziEsclusivi(idProgrammaFedelta);
 	}
 
 	public String acquistoCartaVIP(int idCliente) {

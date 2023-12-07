@@ -60,6 +60,20 @@ public class ServiceCartaFedelta {
 		}
 		return true;
 	}
+	
+	/*
+	 * Reflects changes in the cashback balance post withdrawal request.
+	 */
+	public boolean updatePunti(int idCliente,int punti){
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
+		try {
+			cartaFedelta.setPunti(punti+cartaFedelta.getPunti());
+			repositoryCartaFedelta.save(cartaFedelta);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 
 	public CartaFedelta getCartaFedeltaByIdCliente(int idCliente) {
 		return repositoryCartaFedelta.findByIdCliente(idCliente);
@@ -90,6 +104,19 @@ public class ServiceCartaFedelta {
 		cartaFedelta.setIdProgrammaFedelta(1);
 		cartaFedelta.setDescrizione("Programma VIP");
 		repositoryCartaFedelta.save(cartaFedelta);
+		return cartaFedelta;
+	}
+
+	public String creazioneCartaFedelta(int idCliente, int idProgramma, String descrizione) {
+		CartaFedelta cartaFedelta = new CartaFedelta();
+		cartaFedelta.setIdCliente(idCliente);
+		cartaFedelta.setIdProgrammaFedelta(idProgramma);
+		cartaFedelta.setDescrizione(descrizione);
+		return null;
+	}
+
+	public CartaFedelta richiestaDatiCarta(int idCliente) {
+		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		return cartaFedelta;
 	}
 }

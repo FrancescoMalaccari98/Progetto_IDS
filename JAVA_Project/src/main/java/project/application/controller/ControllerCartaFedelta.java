@@ -27,6 +27,9 @@ public class ControllerCartaFedelta {
 	@Autowired
 	ServiceProgrammaFedelta serviceProgrammaFedelta;
 	
+	@Autowired
+	ControllerPuntoVendita controllerPuntoVendita;
+	
 	@PostMapping("/updateCashBack")
 	public String updateCashBack(int idCliente,int puntiProdotto) {
 		 CartaFedelta cartaFedelta =serviceCartaFedelta.getCartaFedeltaByIdCliente(idCliente);
@@ -72,13 +75,22 @@ public class ControllerCartaFedelta {
 	
 	@PostMapping("/selezionePremio")
 	public String selezionePremio(Premi premio,int idCliente) {
-		if(serviceCartaFedelta.controlloPunti(premio,idCliente))
-			//TODO TODO TODO TODO TODO TODO
-			return "";
+		if(serviceCartaFedelta.controlloPunti(premio,idCliente)) {
+			controllerPuntoVendita.updateCatalogo(idCliente, idCliente);
+			return "ConfermaRiscatto";
+		}
 		return "revocaRiscatto";
 	}
 
 	public CartaFedelta creazioneCartaFedeltaVIP(int idCliente, String type) {
 		return serviceCartaFedelta.insertCartaVip(idCliente,type);
+	}
+
+	public String creazioneCartaFedelta(int idCliente,int idProgramma,String idPuntoVendita) {
+		return serviceCartaFedelta.creazioneCartaFedelta(idCliente, idProgramma, idPuntoVendita);
+	}
+
+	public CartaFedelta richiestaDatiCarta(int idCliente) {
+		return serviceCartaFedelta.richiestaDatiCarta(idCliente);
 	}
 }

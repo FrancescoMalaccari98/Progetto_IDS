@@ -21,7 +21,7 @@ public class PuntoVendita {
     @Column
     private String descrizione;
     @Column
-    private List<Integer> idProgrammaFedelta;
+    private List<Integer> listaIdProgrammaFedelta;
     @Column
     private List<Integer> idCatalogoPremi; 
     @Column
@@ -44,11 +44,11 @@ public class PuntoVendita {
 	}
 
 	public List<Integer> getIdProgrammaFedelta() {
-		return idProgrammaFedelta;
+		return listaIdProgrammaFedelta;
 	}
 
 	public void setIdProgrammaFedelta(List<Integer> idProgrammaFedelta) {
-		this.idProgrammaFedelta = idProgrammaFedelta;
+		this.listaIdProgrammaFedelta = idProgrammaFedelta;
 	}
 
 	public List<Integer> getIdCatalogoPremi() {
@@ -68,10 +68,10 @@ public class PuntoVendita {
 	}
 
 	public List<Integer> getProgrammaFedelta() {
-		return idProgrammaFedelta;
+		return listaIdProgrammaFedelta;
 	}
 
 	public void setProgrammaFedelta(List<Integer> programmaFedelta) {
-		this.idProgrammaFedelta = programmaFedelta;
+		this.listaIdProgrammaFedelta = programmaFedelta;
 	}
 }

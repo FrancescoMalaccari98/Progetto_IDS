@@ -1,5 +1,7 @@
 package project.application.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,8 @@ public class ProgrammaFedelta {
     private String informazioniBase;
     @Column
     private String informazioniDettagliate;
-
+    @Column
+	private List<String> listaServiziEsclusivi;
 
 	public ProgrammaFedelta(String nomeProgramma, String informazioniBase, String informazioniDettagliate) {
 		super();
@@ -64,6 +67,15 @@ public class ProgrammaFedelta {
 		this.id = id;
 	}
 	
+  public List<String> getListaServiziEsclusivi() {
+		return listaServiziEsclusivi;
+	}
+
+
+	public void setListaServiziEsclusivi(List<String> listaServiziEsclusivi) {	
+		this.listaServiziEsclusivi = listaServiziEsclusivi;
+	}
+		
 	public ProgrammaFedelta(int id, String nomeProgramma) {
 		super();
 		this.id = id;

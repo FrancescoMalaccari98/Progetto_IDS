@@ -1,5 +1,7 @@
 package project.application.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +65,34 @@ public class ServicePuntoVendita {
 		return "Conferma Recensione";
 	}
 	
+	public String updateCatalogo(int idPremio, int idPuntoVendita) {
+		PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+		List<Integer> listaIdPremi = puntoVendita.getIdCatalogoPremi();
+		listaIdPremi.remove(idPremio);
+		puntoVendita.setIdCatalogoPremi(listaIdPremi);
+		repositoryPuntoVendita.save(puntoVendita);
+		return "Conferma Recensione";
+	}
+
+	public List<String> getListaPuntiVendita() {
+		List<PuntoVendita>listaPuntiVendita =repositoryPuntoVendita.findAll();
+		List<String> listaNomiPuntiVendita = new ArrayList<String>();
+		for(PuntoVendita puntoVendita: listaPuntiVendita) {
+			listaNomiPuntiVendita.add(puntoVendita.getNome());
+		return listaNomiPuntiVendita;
+		}
+		return listaNomiPuntiVendita;
+	}
+
+	public List<Integer> getListaProgrammiFedeltà(int idPuntoVendita) {
+		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+		return puntoVendita.getProgrammaFedelta();
+	}
+	
+	public boolean checkDatiIstruzione (HashMap<String,String> datiIstruzione){
+		 if(datiIstruzione.get("idPuntoVendita")==null)
+		 return false;
+		return true;
+	}
+
 }

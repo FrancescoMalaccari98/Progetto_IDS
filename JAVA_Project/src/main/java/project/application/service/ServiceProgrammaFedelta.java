@@ -132,4 +132,8 @@ public class ServiceProgrammaFedelta {
 	public ProgrammaFedelta getProgrammaFedelta(int idProgrammaFedelta) {
 		return repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta);
 	}
+
+	public List<String> getListaServiziEsclusivi(int idProgrammaFedelta) {
+		return repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta).getListaServiziEsclusivi();
+	}
 }

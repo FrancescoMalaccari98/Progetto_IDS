@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.application.model.CartaFedelta;
 import project.application.service.ServicePuntoVendita;
 
 @RestController
@@ -16,6 +17,9 @@ public class ControllerPuntoVendita {
 
 	@Autowired
 	ServicePuntoVendita servicePuntoVendita;
+	
+	@Autowired
+	ControllerCartaFedelta controllerCartaFedelta;
 	
 	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String,String> moduloAdesione){
@@ -39,7 +43,36 @@ public class ControllerPuntoVendita {
 		return listaPremi;
 	}
 
+	@PostMapping("/inserimentoRecensione")
 	public String inserimentoRecensione(int value,String descrizione, int idPuntoVendita) {
 		return servicePuntoVendita.inserimentoRecensione(value,descrizione,idPuntoVendita);
 	}
+	
+	@PostMapping("/updateCatalogo")
+	public String updateCatalogo(int idPremio,int idPuntoVendita) {
+		return servicePuntoVendita.updateCatalogo(idPremio,idPuntoVendita);
+	}
+
+	@PostMapping("/getListaPuntiVendita")
+	public List<String> getListaPuntiVendita() {
+		return servicePuntoVendita.getListaPuntiVendita();
+	}
+	
+	@PostMapping("/getListaProgrammiFedeltà")
+	public List<Integer> getListaProgrammiFedeltà(int idPuntoVendita) {
+		return servicePuntoVendita.getListaProgrammiFedeltà(idPuntoVendita);
+	}
+
+	@PostMapping("/controllaDatiIscrizione")
+	public String controllaDatiIscrizione(HashMap<String,String> datiIscrizione) {
+		if(servicePuntoVendita.checkDatiIstruzione( datiIscrizione)) {
+		 if(controllerCartaFedelta.creazioneCartaFedelta(
+				 Integer.parseInt(datiIscrizione.get("idCliente")),
+				 Integer.parseInt(datiIscrizione.get("idProgramma"))
+				 ,datiIscrizione.get("descrizione")).equals("ConfermaCreazione"));
+		 	return "confermaIscrizione";
+		}
+		return "Dati errati";
+	}
 }
+

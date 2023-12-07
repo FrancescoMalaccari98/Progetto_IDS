@@ -1,6 +1,7 @@
 package project.application.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,11 +130,10 @@ public class ControllerCliente{
 	}
 	
 	@PostMapping("/accessoServiziEsclusivi")
-	public List<String>accessoServiziEsclusivi(int idCliente) {
+	public List<String>accessoServiziEsclusivi(int idCliente,int idProgrammaFedelta) {
 		List<String> listaServizi  = new ArrayList<>();
 		if(controllerCartaFedelta.verificaCliente(idCliente)) {
-			//listaServizi = controllerProgrammaFedelta.getListaServiziEsclusivi();
-			//TODO TODO TODO TODO TODO TODO
+			listaServizi = controllerProgrammaFedelta.getListaServiziEsclusivi(idProgrammaFedelta);
 			return listaServizi;
 		}
 		listaServizi.set(0, "AccessoNegato");
@@ -148,6 +148,21 @@ public class ControllerCliente{
 	@PostMapping("/acquistoCartaVIP")
 	public String acquistoCartaVIP(int idCliente){
 		return controllerProgrammaFedelta.acquistoCartaVIP(idCliente);
+	}
+	
+	@PostMapping("/iscrizioneProgrammaFedelta")
+	public List<String> iscrizioneProgrammaFedelta(){
+		return controllerPuntoVendita.getListaPuntiVendita();
+	}
+	
+	@PostMapping("/selezionePuntoVendita")
+	public List<Integer> selezionePuntoVendita(int idPuntoVendita){
+		return controllerPuntoVendita.getListaProgrammiFedeltà(idPuntoVendita);
+	}
+	
+	@PostMapping("/selezioneProgramma")
+	public String selezioneProgramma(HashMap<String,String> datiIscrizione){
+		return controllerPuntoVendita.controllaDatiIscrizione(datiIscrizione);
 	}
 }
 	
