@@ -1,6 +1,7 @@
 package project.application.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,7 +43,11 @@ public class ControllerAdmin {
 	public String inserimentoInfoSconto(HashMap<String,String>  infoSconto, int idPuntoVendita) {
 		return controllerSconto.inserimentoSconto(infoSconto,idPuntoVendita);
 	}
-	
+
+	@PostMapping("/selezionaTipo")
+	public List<Integer> selezionaTipo(String tipo,int idPuntoVendita) {
+		return controllerSconto.selezionaTipo(tipo,idPuntoVendita);
+	}
 	
 
 }

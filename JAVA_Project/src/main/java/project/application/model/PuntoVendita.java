@@ -23,16 +23,27 @@ public class PuntoVendita {
     @Column
     private List<Integer> listaIdProgrammaFedelta;
     @Column
-    private List<Integer> idCatalogoPremi; 
+    private List<Integer> listaIdCatalogoPremi; 
     @Column
     private String recensione;
-	
+    @Column
+    private List<Integer> listaIdClienti;
+    
     public String getNome() {
 		return nome;
 	}
-
+    
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	
+	public List<Integer> getListaClienti() {
+		return listaIdClienti;
+	}
+
+	public void setListaClienti(List<Integer> listaClienti) {
+		this.listaIdClienti = listaClienti;
 	}
 
 	public String getDescrizione() {
@@ -52,11 +63,11 @@ public class PuntoVendita {
 	}
 
 	public List<Integer> getIdCatalogoPremi() {
-		return idCatalogoPremi;
+		return listaIdCatalogoPremi;
 	}
 
 	public void setIdCatalogoPremi(List<Integer> idCatalogoPremi) {
-		this.idCatalogoPremi = idCatalogoPremi;
+		this.listaIdCatalogoPremi = idCatalogoPremi;
 	}
 
 	public String getRecensione() {
@@ -67,11 +78,11 @@ public class PuntoVendita {
 		this.recensione = recensione;
 	}
 
-	public List<Integer> getProgrammaFedelta() {
+	public List<Integer> getListaIdProgrammaFedelta() {
 		return listaIdProgrammaFedelta;
 	}
 
-	public void setProgrammaFedelta(List<Integer> programmaFedelta) {
+	public void setListaIdProgrammaFedelta(List<Integer> programmaFedelta) {
 		this.listaIdProgrammaFedelta = programmaFedelta;
 	}
 }

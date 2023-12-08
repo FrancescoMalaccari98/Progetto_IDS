@@ -1,7 +1,7 @@
 package project.application.model;
 
 import jakarta.persistence.Table;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,12 +14,17 @@ public class CartaFedelta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column
     private String descrizione;
+    @Column
     private int punti;
+    @Column
     private int idProgrammaFedelta;
+    @Column
 	private int idCliente;
+    @Column
     private int cashBack;
+    @Column
     private int livello;
     
 	public int getLivello() {

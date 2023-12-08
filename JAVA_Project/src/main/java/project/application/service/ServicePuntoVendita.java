@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project.application.model.ProgrammaFedelta;
 import project.application.model.PuntoVendita;
 import project.application.repository.RepositoryPuntoVendita;
 
@@ -23,7 +24,7 @@ public class ServicePuntoVendita {
 		PuntoVendita puntoVendita= repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
 		
 		if(puntoVendita != null) {
-			List<Integer> programmmiFedelta = puntoVendita.getProgrammaFedelta();
+			List<Integer> programmmiFedelta = puntoVendita.getListaIdProgrammaFedelta();
 			for (Integer idCurrentProgrammaFedelta : programmmiFedelta) {
 				if(idCurrentProgrammaFedelta==idProgramma)
 					return "Adesione già Esistente";
@@ -40,9 +41,9 @@ public class ServicePuntoVendita {
 			PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
 
 			if (puntoVendita != null) {
-				List<Integer> listaProgrammi = puntoVendita.getProgrammaFedelta();
+				List<Integer> listaProgrammi = puntoVendita.getListaIdProgrammaFedelta();
 				listaProgrammi.add(idProgramma);
-				puntoVendita.setProgrammaFedelta(listaProgrammi);
+				puntoVendita.setListaIdProgrammaFedelta(listaProgrammi);
 				repositoryPuntoVendita.save(puntoVendita);
 			}
 		} catch (Exception e) {
@@ -86,13 +87,25 @@ public class ServicePuntoVendita {
 
 	public List<Integer> getListaProgrammiFedeltà(int idPuntoVendita) {
 		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		return puntoVendita.getProgrammaFedelta();
+		return puntoVendita.getListaIdProgrammaFedelta();
 	}
 	
 	public boolean checkDatiIstruzione (HashMap<String,String> datiIstruzione){
 		 if(datiIstruzione.get("idPuntoVendita")==null)
 		 return false;
 		return true;
+	}
+
+	public List<Integer> getListaNomiProgrammiFedeltà(int idPuntoVendita) {
+		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+		List<Integer> listaNomiProgrammi = puntoVendita.getIdProgrammaFedelta();
+		return listaNomiProgrammi;
+	}
+
+	public List<Integer> getListaNomiClienti(int idPuntoVendita) {
+		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+		List<Integer> listaNOmiProgrammi = puntoVendita.getListaClienti();
+		return listaNOmiProgrammi;
 	}
 
 }

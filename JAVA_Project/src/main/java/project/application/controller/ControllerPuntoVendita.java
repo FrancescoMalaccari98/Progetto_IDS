@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import project.application.model.CartaFedelta;
 import project.application.service.ServicePuntoVendita;
 
 @RestController
@@ -73,6 +72,14 @@ public class ControllerPuntoVendita {
 		 	return "confermaIscrizione";
 		}
 		return "Dati errati";
+	}
+
+	public List<Integer> getListaNomiClienti(int idPuntoVendita) {
+		return servicePuntoVendita.getListaNomiClienti(idPuntoVendita);
+	}
+
+	public List<Integer> getListaNomiProgrammiFedeltà(int idPuntoVendita) {
+		return servicePuntoVendita.getListaNomiProgrammiFedeltà(idPuntoVendita);
 	}
 }
 

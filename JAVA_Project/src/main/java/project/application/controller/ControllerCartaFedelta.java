@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.application.model.CartaFedelta;
+import project.application.model.Cliente;
 import project.application.model.Premi;
 import project.application.model.ProgrammaFedelta;
 import project.application.service.ServiceCartaFedelta;
@@ -82,15 +83,27 @@ public class ControllerCartaFedelta {
 		return "revocaRiscatto";
 	}
 
+	@PostMapping("/creazioneCartaFedeltaVIP")
 	public CartaFedelta creazioneCartaFedeltaVIP(int idCliente, String type) {
 		return serviceCartaFedelta.insertCartaVip(idCliente,type);
 	}
 
+	@PostMapping("/creazioneCartaFedelta")
 	public String creazioneCartaFedelta(int idCliente,int idProgramma,String idPuntoVendita) {
 		return serviceCartaFedelta.creazioneCartaFedelta(idCliente, idProgramma, idPuntoVendita);
 	}
 
+	@PostMapping("/richiestaDatiCarta")
 	public CartaFedelta richiestaDatiCarta(int idCliente) {
 		return serviceCartaFedelta.richiestaDatiCarta(idCliente);
+	}
+
+	@PostMapping("/getListaClienti")
+	public List<Integer> getListaClienti(int idProgramma) {
+		List<Integer> listIdCliente= serviceCartaFedelta.getListaClienti(idProgramma);
+		/*
+		 * Invio dati ad un WebService esterno per l'inoltro delle mail/sms 
+		 */
+		return listIdCliente;
 	}
 }

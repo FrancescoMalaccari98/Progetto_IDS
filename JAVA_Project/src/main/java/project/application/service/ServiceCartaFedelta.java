@@ -1,5 +1,6 @@
 package project.application.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,5 +119,14 @@ public class ServiceCartaFedelta {
 	public CartaFedelta richiestaDatiCarta(int idCliente) {
 		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		return cartaFedelta;
+	}
+
+	public List<Integer> getListaClienti(int idProgramma) {
+		List<CartaFedelta> listCartaFedelta =repositoryCartaFedelta.findByIdProgrammaFedelta(idProgramma);
+		List<Integer> listIdCliente = new ArrayList<Integer>();
+		for(CartaFedelta cartaFedelta : listCartaFedelta) {
+			listIdCliente.add(cartaFedelta.getIdCliente());
+		}
+		return listIdCliente;
 	}
 }
