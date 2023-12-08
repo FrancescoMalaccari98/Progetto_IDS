@@ -48,7 +48,7 @@ public class ControllerSconto {
 		if(tipo.equals("Cliente"))
 		return controllerPuntoVendita.getListaNomiClienti(idPuntoVendita);
 		else 
-			return controllerPuntoVendita.getListaNomiProgrammiFedeltà(idPuntoVendita);
+			return controllerPuntoVendita.getListaNomiProgrammiFedelta(idPuntoVendita);
 	}
 
 	@PostMapping("/selezioneProgramma")

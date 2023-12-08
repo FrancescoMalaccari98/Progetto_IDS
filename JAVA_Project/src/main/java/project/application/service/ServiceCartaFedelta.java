@@ -113,7 +113,8 @@ public class ServiceCartaFedelta {
 		cartaFedelta.setIdCliente(idCliente);
 		cartaFedelta.setIdProgrammaFedelta(idProgramma);
 		cartaFedelta.setDescrizione(descrizione);
-		return null;
+		repositoryCartaFedelta.save(cartaFedelta);
+		return "Carta creata Correttamente";
 	}
 
 	public CartaFedelta richiestaDatiCarta(int idCliente) {
@@ -128,5 +129,9 @@ public class ServiceCartaFedelta {
 			listIdCliente.add(cartaFedelta.getIdCliente());
 		}
 		return listIdCliente;
+	}
+
+	public void aggiornaCartaFedelta(CartaFedelta cartaFedelta) {
+		repositoryCartaFedelta.save(cartaFedelta);
 	}
 }

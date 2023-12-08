@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import project.application.model.CartaFedelta;
 import project.application.model.Cliente;
 import project.application.model.Premi;
+import project.application.model.Prodotto;
 import project.application.model.ProgrammaFedelta;
 import project.application.service.ServiceCartaFedelta;
 import project.application.service.ServiceCliente;
@@ -30,6 +31,9 @@ public class ControllerCartaFedelta {
 	
 	@Autowired
 	ControllerPuntoVendita controllerPuntoVendita;
+	
+	@Autowired
+	ControllerCliente controllerCliente;
 	
 	@PostMapping("/updateCashBack")
 	public String updateCashBack(int idCliente,int puntiProdotto) {
@@ -105,5 +109,24 @@ public class ControllerCartaFedelta {
 		 * Invio dati ad un WebService esterno per l'inoltro delle mail/sms 
 		 */
 		return listIdCliente;
+	}
+	
+	@PostMapping("/updatePunti")
+	public String updatePunti(List<Prodotto> listaProdotti,int idProgrammaFedelta,int idCliente){
+		ProgrammaFedelta programmaFedelta = serviceProgrammaFedelta.getProgrammaFedelta(idProgrammaFedelta);
+		String informazioniBase = programmaFedelta.getInformazioniBase();
+		String[] informazioni = informazioniBase.split(",");
+		CartaFedelta cartaFedelta = serviceCartaFedelta.getCartaFedeltaByIdCliente(idCliente);
+		if(cartaFedelta.getPunti()>Integer.parseInt(informazioni[0])) {
+			cartaFedelta.setLivello(cartaFedelta.getLivello()+1);
+			serviceCartaFedelta.aggiornaCartaFedelta(cartaFedelta);
+			return "Livello Sbloccato";
+		} else if (cartaFedelta.getPunti()>Integer.parseInt(informazioni[1])) {
+			cartaFedelta.setLivello(cartaFedelta.getLivello()+1);
+			serviceCartaFedelta.aggiornaCartaFedelta(cartaFedelta);
+			return "Livello Sbloccato";
+		} else {
+			return "Punti: "+ cartaFedelta.getPunti() +", Punti livelli: "+informazioni[0]+", "+informazioni[1];
+		}
 	}
 }

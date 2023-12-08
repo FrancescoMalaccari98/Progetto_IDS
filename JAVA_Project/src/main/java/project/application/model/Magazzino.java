@@ -20,5 +20,28 @@ public class Magazzino {
     private int idProdotto;
     @Column
     private int quantita;
-
+    
+	public int getIdPuntoVendita() {
+		return idPuntoVendita;
+	}
+	public void setIdPuntoVendita(int idPuntoVendita) {
+		this.idPuntoVendita = idPuntoVendita;
+	}
+	public int getIdProdotto() {
+		return idProdotto;
+	}
+	public void setIdProdotto(int idProdotto) {
+		this.idProdotto = idProdotto;
+	}
+	public int getQuantita() {
+		return quantita;
+	}
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+	
+	public int getId() {
+		return id;
+	}
+    
 }

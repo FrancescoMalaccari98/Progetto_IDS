@@ -60,9 +60,9 @@ public class ControllerPuntoVendita {
 		return servicePuntoVendita.getListaPuntiVendita();
 	}
 	
-	@PostMapping("/getListaProgrammiFedeltà")
-	public List<Integer> getListaProgrammiFedeltà(int idPuntoVendita) {
-		return servicePuntoVendita.getListaProgrammiFedeltà(idPuntoVendita);
+	@PostMapping("/getListaProgrammiFedelta")
+	public List<Integer> getListaProgrammiFedelta(int idPuntoVendita) {
+		return servicePuntoVendita.getListaProgrammiFedelta(idPuntoVendita);
 	}
 
 	@PostMapping("/controllaDatiIscrizione")
@@ -82,9 +82,9 @@ public class ControllerPuntoVendita {
 		return servicePuntoVendita.getListaNomiClienti(idPuntoVendita);
 	}
 
-	@PostMapping("/getListaNomiProgrammiFedeltà")
-	public List<Integer> getListaNomiProgrammiFedeltà(int idPuntoVendita) {
-		return servicePuntoVendita.getListaNomiProgrammiFedeltà(idPuntoVendita);
+	@PostMapping("/getListaNomiProgrammiFedelta")
+	public List<Integer> getListaNomiProgrammiFedelta(int idPuntoVendita) {
+		return servicePuntoVendita.getListaNomiProgrammiFedelta(idPuntoVendita);
 	}
 	
 	@PostMapping("/updateMagazzino")

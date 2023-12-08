@@ -25,6 +25,9 @@ public class ControllerOperatore {
 	@Autowired
 	ControllerCartaFedelta controllerCartaFedelta;
 	
+	@Autowired
+	ControllerPuntoVendita controllerPuntovendita;
+	
 	@PostMapping("/getDipendenteByPuntoVendita")
 	public List<Operatore> getDipendenteByPuntoVendita(int idPuntoVendita) {
 		return serviceOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
@@ -43,5 +46,15 @@ public class ControllerOperatore {
 	@PostMapping("/inseriementoCPromozionale")
 	public List<Integer> inseriementoCPromozionale(int idCPromozionale,int idProgramma){
 		return controllerCartaFedelta.getListaClienti(idProgramma);
+	}
+	
+	@PostMapping("/richiestaCreazioneCarta")
+	public List<Integer> richiestaCreazioneCarta(int idPuntoVendita){
+		return controllerPuntovendita.getListaProgrammiFedelta(idPuntoVendita);
+	}
+	
+	@PostMapping("/creaCarta")
+	public String creaCarta(int idCliente,int idProgramma,String info){
+		return controllerCartaFedelta.creazioneCartaFedelta(idCliente,idProgramma,info);
 	}
 }

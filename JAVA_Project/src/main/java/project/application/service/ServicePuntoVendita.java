@@ -21,13 +21,14 @@ public class ServicePuntoVendita {
 	ServiceRecensione serviceRecensione;
 	
 	public String controlloAdesioneEsistente(int idPuntoVendita,int idProgramma){
-		PuntoVendita puntoVendita= repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+		List<PuntoVendita> listPuntoVendita= repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
 		
-		if(puntoVendita != null) {
-			List<Integer> programmmiFedelta = puntoVendita.getListaIdProgrammaFedelta();
-			for (Integer idCurrentProgrammaFedelta : programmmiFedelta) {
-				if(idCurrentProgrammaFedelta==idProgramma)
-					return "Adesione già Esistente";
+		if(listPuntoVendita != null) {
+			for (PuntoVendita puntoVendita : listPuntoVendita) {
+				if(puntoVendita.getListaIdProgrammaFedelta() != 0) {
+					if(puntoVendita.getListaIdProgrammaFedelta()==idProgramma)
+						return "Adesione già Esistente";
+				}
 			}
 		} else {
 			return "Punto Vendita non Trovato";
@@ -38,13 +39,19 @@ public class ServicePuntoVendita {
 	
 	public String aggiuntaProgramma(int idProgramma,int idPuntoVendita){
 		try {
-			PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
+			List<PuntoVendita> listaPuntoVendita = repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
 
-			if (puntoVendita != null) {
-				List<Integer> listaProgrammi = puntoVendita.getListaIdProgrammaFedelta();
-				listaProgrammi.add(idProgramma);
-				puntoVendita.setListaIdProgrammaFedelta(listaProgrammi);
-				repositoryPuntoVendita.save(puntoVendita);
+			if (listaPuntoVendita != null) {
+				for (PuntoVendita puntoVendita : listaPuntoVendita) {
+				if(puntoVendita.getListaIdProgrammaFedelta() != 0) {
+						PuntoVendita puntoVenditaProg = new PuntoVendita();
+						puntoVenditaProg.setIdProgrammaFedelta(idProgramma);
+						puntoVenditaProg.setDescrizione(puntoVendita.getDescrizione());
+						puntoVenditaProg.setIdCatalogoPremi(puntoVendita.getIdCatalogoPremi());
+						repositoryPuntoVendita.save(puntoVenditaProg);
+						break;
+					}
+				}
 			}
 		} catch (Exception e) {
 			return "Errore nell'aggiunta del programma a questo punto vendita (idPuntoVendita: "
@@ -54,40 +61,56 @@ public class ServicePuntoVendita {
 	}
 
 	public List<Integer> getCatalogoPremi(int idPuntoVendita) {
-		PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		return puntoVendita.getIdCatalogoPremi();
+		List<PuntoVendita> listaPuntoVendita = repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
+		List<Integer> idCatalogoPremi = new ArrayList<Integer>();
+		for (PuntoVendita puntoVendita : listaPuntoVendita) {
+			if(puntoVendita.getIdCatalogoPremi() != 0 && puntoVendita.getIdProgrammaFedelta() ==0 && puntoVendita.getListaClienti() ==0 ) {
+				idCatalogoPremi.add(puntoVendita.getIdCatalogoPremi());
+			}
+		}
+		return idCatalogoPremi;
 	}
 
 	public String inserimentoRecensione(int value, String descrizione, int idPuntoVendita) {
-		PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		serviceRecensione.insertRecensione(descrizione, idPuntoVendita, value);
-		puntoVendita.setRecensione(puntoVendita.getRecensione()+","+descrizione);
-		repositoryPuntoVendita.save(puntoVendita);
-		return "Conferma Recensione";
+		List<PuntoVendita> listPuntoVendita = repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
+		for (PuntoVendita puntoVendita : listPuntoVendita) {
+			serviceRecensione.insertRecensione(descrizione, idPuntoVendita, value);
+			puntoVendita.setRecensione(puntoVendita.getRecensione()+","+descrizione);
+			repositoryPuntoVendita.save(puntoVendita);
+			return "Conferma Recensione";
+		}
+		return "Errore Recensione";
+
 	}
 	
 	public String updateCatalogo(int idPremio, int idPuntoVendita) {
-		PuntoVendita puntoVendita = repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		List<Integer> listaIdPremi = puntoVendita.getIdCatalogoPremi();
-		listaIdPremi.remove(idPremio);
-		puntoVendita.setIdCatalogoPremi(listaIdPremi);
-		repositoryPuntoVendita.save(puntoVendita);
-		return "Conferma Recensione";
+		List<PuntoVendita> listPuntoVendita = repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
+		for (PuntoVendita puntoVendita : listPuntoVendita) {
+			if(puntoVendita.getIdCatalogoPremi() == idPremio)
+				repositoryPuntoVendita.delete(puntoVendita);
+			return "Conferma Catalogo modificato";
+		}
+		return "Errore modifica Catalogo";
 	}
 
 	public List<String> getListaPuntiVendita() {
 		List<PuntoVendita>listaPuntiVendita =repositoryPuntoVendita.findAll();
 		List<String> listaNomiPuntiVendita = new ArrayList<String>();
 		for(PuntoVendita puntoVendita: listaPuntiVendita) {
-			listaNomiPuntiVendita.add(puntoVendita.getNome());
-		return listaNomiPuntiVendita;
+			if(!listaNomiPuntiVendita.contains(puntoVendita.getNome()))
+				listaNomiPuntiVendita.add(puntoVendita.getNome());
 		}
 		return listaNomiPuntiVendita;
 	}
 
-	public List<Integer> getListaProgrammiFedeltà(int idPuntoVendita) {
-		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		return puntoVendita.getListaIdProgrammaFedelta();
+	public List<Integer> getListaProgrammiFedelta(int idPuntoVendita) {
+		List<PuntoVendita> listPuntoVendita=repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);
+		List<Integer> idCatalogoPremi = new ArrayList<Integer>();
+		for (PuntoVendita puntoVendita : listPuntoVendita) {
+			if(puntoVendita.getIdCatalogoPremi() != 0 && puntoVendita.getListaClienti() ==0 && puntoVendita.getIdProgrammaFedelta() ==0)
+				idCatalogoPremi.add(puntoVendita.getIdCatalogoPremi());
+		}		
+		return idCatalogoPremi;
 	}
 	
 	public boolean checkDatiIstruzione (HashMap<String,String> datiIstruzione){
@@ -96,16 +119,23 @@ public class ServicePuntoVendita {
 		return true;
 	}
 
-	public List<Integer> getListaNomiProgrammiFedeltà(int idPuntoVendita) {
-		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		List<Integer> listaNomiProgrammi = puntoVendita.getIdProgrammaFedelta();
-		return listaNomiProgrammi;
+	public List<Integer> getListaNomiProgrammiFedelta(int idPuntoVendita) {
+		List<PuntoVendita> listaPuntoVendita=repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);		
+		List<Integer> idProgrammiFedelta = new ArrayList<Integer>();
+		for (PuntoVendita puntoVendita : listaPuntoVendita) {
+			if(puntoVendita.getIdCatalogoPremi() == 0 && puntoVendita.getListaClienti() ==0 && puntoVendita.getIdProgrammaFedelta() !=0)
+				idProgrammiFedelta.add(puntoVendita.getIdProgrammaFedelta());
+		}		
+		return idProgrammiFedelta;
 	}
 
 	public List<Integer> getListaNomiClienti(int idPuntoVendita) {
-		PuntoVendita puntoVendita=repositoryPuntoVendita.findPuntoVenditaById(idPuntoVendita);
-		List<Integer> listaNOmiProgrammi = puntoVendita.getListaClienti();
-		return listaNOmiProgrammi;
+		List<PuntoVendita> listaPuntoVendita=repositoryPuntoVendita.findPuntoVenditaByIdPuntoVendita(idPuntoVendita);		
+		List<Integer> idClienti = new ArrayList<Integer>();
+		for (PuntoVendita puntoVendita : listaPuntoVendita) {
+			if(puntoVendita.getIdCatalogoPremi() == 0 && puntoVendita.getListaClienti() !=0 && puntoVendita.getIdProgrammaFedelta() ==0)
+				idClienti.add(puntoVendita.getListaClienti());
+		}		
+		return idClienti;
 	}
-
 }

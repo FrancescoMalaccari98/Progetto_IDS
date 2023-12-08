@@ -157,7 +157,7 @@ public class ControllerCliente{
 	
 	@PostMapping("/selezionePuntoVendita")
 	public List<Integer> selezionePuntoVendita(int idPuntoVendita){
-		return controllerPuntoVendita.getListaProgrammiFedeltà(idPuntoVendita);
+		return controllerPuntoVendita.getListaProgrammiFedelta(idPuntoVendita);
 	}
 	
 	@PostMapping("/selezioneProgramma")

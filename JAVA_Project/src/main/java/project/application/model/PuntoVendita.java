@@ -17,17 +17,19 @@ public class PuntoVendita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
+    private int idPuntoVendita;
+    @Column
     private String nome;
     @Column
     private String descrizione;
     @Column
-    private List<Integer> listaIdProgrammaFedelta;
+    private int idProgrammaFedelta;
     @Column
-    private List<Integer> listaIdCatalogoPremi; 
+    private int idCatalogoPremi; 
     @Column
     private String recensione;
     @Column
-    private List<Integer> listaIdClienti;
+    private int idClienti;
     
     public String getNome() {
 		return nome;
@@ -38,12 +40,12 @@ public class PuntoVendita {
 	}
 
 	
-	public List<Integer> getListaClienti() {
-		return listaIdClienti;
+	public int getListaClienti() {
+		return idClienti;
 	}
 
-	public void setListaClienti(List<Integer> listaClienti) {
-		this.listaIdClienti = listaClienti;
+	public void setListaClienti(int listaClienti) {
+		this.idClienti = listaClienti;
 	}
 
 	public String getDescrizione() {
@@ -54,20 +56,20 @@ public class PuntoVendita {
 		this.descrizione = descrizione;
 	}
 
-	public List<Integer> getIdProgrammaFedelta() {
-		return listaIdProgrammaFedelta;
+	public int getIdProgrammaFedelta() {
+		return idProgrammaFedelta;
 	}
 
-	public void setIdProgrammaFedelta(List<Integer> idProgrammaFedelta) {
-		this.listaIdProgrammaFedelta = idProgrammaFedelta;
+	public void setIdProgrammaFedelta(int idProgrammaFedelta) {
+		this.idProgrammaFedelta = idProgrammaFedelta;
 	}
 
-	public List<Integer> getIdCatalogoPremi() {
-		return listaIdCatalogoPremi;
+	public int getIdCatalogoPremi() {
+		return idCatalogoPremi;
 	}
 
-	public void setIdCatalogoPremi(List<Integer> idCatalogoPremi) {
-		this.listaIdCatalogoPremi = idCatalogoPremi;
+	public void setIdCatalogoPremi(int idCatalogoPremi) {
+		this.idCatalogoPremi = idCatalogoPremi;
 	}
 
 	public String getRecensione() {
@@ -78,11 +80,11 @@ public class PuntoVendita {
 		this.recensione = recensione;
 	}
 
-	public List<Integer> getListaIdProgrammaFedelta() {
-		return listaIdProgrammaFedelta;
+	public int getListaIdProgrammaFedelta() {
+		return idProgrammaFedelta;
 	}
 
-	public void setListaIdProgrammaFedelta(List<Integer> programmaFedelta) {
-		this.listaIdProgrammaFedelta = programmaFedelta;
+	public void setListaIdProgrammaFedelta(int programmaFedelta) {
+		this.idProgrammaFedelta = programmaFedelta;
 	}
 }
