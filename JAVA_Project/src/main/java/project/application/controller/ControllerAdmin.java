@@ -49,5 +49,14 @@ public class ControllerAdmin {
 		return controllerSconto.selezionaTipo(tipo,idPuntoVendita);
 	}
 	
-
+	@PostMapping("/selezioneProgramma")
+	public String selezioneProgramma(int idProgramma) {
+		return controllerSconto.selezioneProgramma(idProgramma);
+	}
+	
+	@PostMapping("/selezioneCliente")
+	public String selezioneCliente(int idCliente) {
+		return controllerSconto.selezioneCliente(idCliente);
+	}
+	
 }

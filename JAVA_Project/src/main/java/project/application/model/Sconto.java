@@ -18,9 +18,26 @@ public class Sconto {
     private int idPuntoVendita;
     @Column
     private int valore;
+    @Column
+    private int idCliente;
+    @Column
+    private int idProgrammaFedelta;
 	
-	public void setId(int id) {
-		this.id = id;
+    
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+	public int getIdProgrammaFedelta() {
+		return idProgrammaFedelta;
+	}
+	public void setIdProgrammaFedelta(int idProgrammaFedelta) {
+		this.idProgrammaFedelta = idProgrammaFedelta;
+	}
+	public int getId() {
+		return id;
 	}
 	public int getValore() {
 		return valore;

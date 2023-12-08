@@ -31,6 +31,22 @@ public class ServiceSconto {
 		return prezzoScontato;
 	}
 
+	public String inserimentoScontoProgramma(int idProgramma) {
+		Sconto sconto = new Sconto();
+		sconto.setIdProgrammaFedelta(idProgramma);
+		sconto.setIdPuntoVendita(0);
+		repositorySconto.save(sconto);
+		return "ConfermaAssegnazioneSconto";
+	}
+
+	public String inserimentoScontoCliente(int idCliente) {
+		Sconto sconto = new Sconto();
+		sconto.setIdCliente(idCliente);
+		sconto.setIdProgrammaFedelta(0);
+		repositorySconto.save(sconto);
+		return "ConfermaAssegnazioneSconto";
+	}
+
 	
 	
 }

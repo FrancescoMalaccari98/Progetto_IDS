@@ -51,4 +51,14 @@ public class ControllerSconto {
 			return controllerPuntoVendita.getListaNomiProgrammiFedeltà(idPuntoVendita);
 	}
 
+	@PostMapping("/selezioneProgramma")
+	public String selezioneProgramma(int idProgramma) {
+		return serviceSconto.inserimentoScontoProgramma(idProgramma);
+	}
+
+	@PostMapping("/selezioneCliente")
+	public String selezioneCliente(int idCliente) {
+		return serviceSconto.inserimentoScontoCliente(idCliente);
+	}
+
 }

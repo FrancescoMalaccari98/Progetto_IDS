@@ -20,6 +20,9 @@ public class ControllerPuntoVendita {
 	@Autowired
 	ControllerCartaFedelta controllerCartaFedelta;
 	
+	@Autowired
+	ControllerMagazzino controllerMagazzino;
+	
 	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String,String> moduloAdesione){
 		int idPuntoVendita = Integer.parseInt(moduloAdesione.get("idPuntoVendita"));
@@ -73,13 +76,20 @@ public class ControllerPuntoVendita {
 		}
 		return "Dati errati";
 	}
-
+	
+	@PostMapping("/getListaNomiClienti")
 	public List<Integer> getListaNomiClienti(int idPuntoVendita) {
 		return servicePuntoVendita.getListaNomiClienti(idPuntoVendita);
 	}
 
+	@PostMapping("/getListaNomiProgrammiFedeltà")
 	public List<Integer> getListaNomiProgrammiFedeltà(int idPuntoVendita) {
 		return servicePuntoVendita.getListaNomiProgrammiFedeltà(idPuntoVendita);
+	}
+	
+	@PostMapping("/updateMagazzino")
+	public List<Integer> updateMagazzino(int idPuntoVendita) {
+		return controllerMagazzino.getListaProdotti(idPuntoVendita);
 	}
 }
 
