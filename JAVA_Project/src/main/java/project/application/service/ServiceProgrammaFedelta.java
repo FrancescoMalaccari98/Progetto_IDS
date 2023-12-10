@@ -2,6 +2,8 @@ package project.application.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -134,6 +136,7 @@ public class ServiceProgrammaFedelta {
 	}
 
 	public List<String> getListaServiziEsclusivi(int idProgrammaFedelta) {
-		return repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta).getListaServiziEsclusivi();
+		 String[] servizi = repositoryProgrammaFedelta.findProgrammaFedeltaById(idProgrammaFedelta).getListaServiziEsclusivi().split(",");
+	     return new ArrayList<>(Arrays.asList(servizi));
 	}
 }

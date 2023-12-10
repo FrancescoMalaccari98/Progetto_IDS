@@ -32,14 +32,12 @@ public class ControllerProprietarioAzienda {
 	
 	@PostMapping("/adesioneProgrammaFedelta")
 	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
-		List<ProgrammaFedelta> listaProgrammi = controllerProgrammaFedelta.adesioneProgrammaFedelta();
-		return listaProgrammi;
+		return controllerProgrammaFedelta.adesioneProgrammaFedelta();
 	}
 
 	@PostMapping("/selezioneProgramma")
 	public HashMap<String,String>  selezioneProgramma(int idProgrammaScelto) {
-		HashMap<String,String> modulo = controllerProgrammaFedelta.selezioneProgramma(idProgrammaScelto);
-		return modulo;
+		return controllerProgrammaFedelta.selezioneProgramma(idProgrammaScelto);
 	}
 
 	@PostMapping("/compilazioneModuloDiAdesione")
@@ -53,26 +51,22 @@ public class ControllerProprietarioAzienda {
 	
 	@PostMapping("/inserimentoInformazioniAggiuntive")
 	public String inserimentoInformazioniAggiuntive(HashMap<String, String> informazioniAggiuntive) {
-		String response = controllerPuntoVendita.inserimentoInformazioniAggiuntive(informazioniAggiuntive);
-		return response;
+		return controllerPuntoVendita.inserimentoInformazioniAggiuntive(informazioniAggiuntive);
 	}
 
 	@PostMapping("/creaCoalizione")
 	public String creaCoalizione() {
-		String response = controllerCoalizione.creaCoalizione();
-		return response;
+		return controllerCoalizione.creaCoalizione();
 	}
-
-	@PostMapping("/inserimentoInformazioni")
-	public String inserimentoInformazioni(HashMap<String, String> informazioni) {
-		String response = controllerCoalizione.inserimentoInformazioni(informazioni);
-		return response;
+	
+	@PostMapping("/inserimentoInfoCoalizione")
+	public String inserimentoInfoCoalizione(HashMap<String, String> informazioni) {
+		return controllerCoalizione.inserimentoInformazioni(informazioni);
 	}
 	
 	@PostMapping("/inoltroRichiestaAdesione")
 	public String inoltroRichiestaAdesione(String adesione) {
-		String response = controllerCoalizione.inserimentoAdesione(adesione);
-		return response;
+		return controllerCoalizione.inserimentoAdesione(adesione);
 	}
 	
 	@PostMapping("/accessoPannelloDiControllo")
@@ -85,14 +79,21 @@ public class ControllerProprietarioAzienda {
 	
 	@PostMapping("/richiestaListaDipendeti")
 	public List<Operatore> richiestaListaDipendeti(int idPuntoVendita){
-		List<Operatore> response = controllerOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
-		return response;
+		return controllerOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
 	}
 	
 	@PostMapping("/selezionaCandidatoAdmin")
 	public String selezionaCandidatoAdmin(int idOperatore){
-		String response = controllerOperatore.setAdmin(idOperatore); 
-		return response;
+		return controllerOperatore.setAdmin(idOperatore); 
 	}
 	
+	@PostMapping("/richiestaPuntiVenditaDisponibili")
+	public List<String> richiestaPuntiVenditaDisponibili(){
+		return controllerPuntoVendita.getListaPuntiVendita(); 
+	}
+
+	@PostMapping("/inoltroRichiestaAdesioneCoalizione")
+	public String inoltroRichiestaAdesioneCoalizione(List<Integer> listaIdPuntiVendita,int idCoalizione){
+		return controllerCoalizione.inoltroRichiestaAdesioneCoalizione(listaIdPuntiVendita,idCoalizione); 
+	}
 }

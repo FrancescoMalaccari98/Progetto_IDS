@@ -24,7 +24,7 @@ public class ProgrammaFedelta {
     @Column
     private String informazioniDettagliate;
     @Column
-	private List<String> listaServiziEsclusivi;
+	private String listaServiziEsclusivi;
 
 	public ProgrammaFedelta(String nomeProgramma, String informazioniBase, String informazioniDettagliate) {
 		super();
@@ -67,12 +67,12 @@ public class ProgrammaFedelta {
 		this.id = id;
 	}
 	
-  public List<String> getListaServiziEsclusivi() {
+  public String getListaServiziEsclusivi() {
 		return listaServiziEsclusivi;
 	}
 
 
-	public void setListaServiziEsclusivi(List<String> listaServiziEsclusivi) {	
+	public void setListaServiziEsclusivi(String listaServiziEsclusivi) {	
 		this.listaServiziEsclusivi = listaServiziEsclusivi;
 	}
 		

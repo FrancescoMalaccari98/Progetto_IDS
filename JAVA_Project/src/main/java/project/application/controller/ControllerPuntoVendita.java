@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import project.application.model.ComunicazionePromozionale;
 import project.application.service.ServicePuntoVendita;
 
 @RestController
@@ -22,6 +23,12 @@ public class ControllerPuntoVendita {
 	
 	@Autowired
 	ControllerMagazzino controllerMagazzino;
+	
+	@Autowired
+	ControllerProdotto controllerProdotto;
+	
+	@Autowired
+	ControllerComunicazionePromozionale controllerComunicazionePromozionale;
 	
 	@PostMapping("/compilazioneModuloDiAdesione")
 	public String compilazioneModuloDiAdesione(HashMap<String,String> moduloAdesione){
@@ -90,6 +97,21 @@ public class ControllerPuntoVendita {
 	@PostMapping("/updateMagazzino")
 	public List<Integer> updateMagazzino(int idPuntoVendita) {
 		return controllerMagazzino.getListaProdotti(idPuntoVendita);
+	}
+	
+	@PostMapping("/creaCPromozionale")
+	public List<Integer> creaCPromozionale(int idPuntoVendita) {
+		return servicePuntoVendita.getListaNomiProgrammiFedelta(idPuntoVendita);
+	}
+	
+	@PostMapping("/inserimentoQuantita")
+	public String inserimentoQuantita(int quantita, int idProdotto,String tipoOperazione,int idPuntovendita) {
+		if(tipoOperazione.equals("Inserimento")){
+			return controllerMagazzino.addProdotto(quantita,idProdotto,idPuntovendita);
+		} else {
+			return controllerMagazzino.removeProdotto(quantita,idProdotto, idPuntovendita);
+
+		}
 	}
 }
 

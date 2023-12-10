@@ -24,4 +24,32 @@ public class ServiceMagazzino {
 		 return listaIdProdotti;
 	}
 
+	public String addProdotto(int quantita, int idProdotto, int idPuntoVendita) {
+		 List<Magazzino> listaMagazzino = repositoryMagazzino.findAllByIdPuntoVendita(idPuntoVendita);
+		 for (Magazzino magazzino : listaMagazzino) {
+			 if(magazzino.getIdProdotto()==idProdotto) {
+				 magazzino.setQuantita(magazzino.getQuantita()+quantita);
+			 	repositoryMagazzino.save(magazzino);
+			 	return "conferma update magazzino";
+			}
+		}
+		 return "Errore in update Magazzino";
+	}
+
+	public String removeProdotto(int quantita, int idProdotto, int idPuntoVendita) {
+		 List<Magazzino> listaMagazzino = repositoryMagazzino.findAllByIdPuntoVendita(idPuntoVendita);
+		 for (Magazzino magazzino : listaMagazzino) {
+			 if(magazzino.getIdProdotto()==idProdotto) {
+				 if(magazzino.getQuantita()<quantita) {
+					 magazzino.setQuantita(magazzino.getQuantita()-quantita);
+					 repositoryMagazzino.save(magazzino);
+					 return "conferma update magazzino";
+				} else {
+					return "Operazione non valida";
+				}
+			}
+		}
+		 return "Errore in update Magazzino";
+	}
+
 }

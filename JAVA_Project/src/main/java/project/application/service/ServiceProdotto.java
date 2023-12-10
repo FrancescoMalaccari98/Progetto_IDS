@@ -22,19 +22,6 @@ public class ServiceProdotto {
 	@Autowired
 	ServiceCliente serviceCliente;
 	
-	public int updateProdotto(List<Prodotto> prodotti,int idPuntoVendita) {
-		int punti = 0;
-        for (Prodotto prodotto : prodotti) {
-		Prodotto product = repositoryProdotto.findProdottoById(prodotto.getId());
-		if (product!=null && product.getIdPuntoVendita() == idPuntoVendita) {
-			product.setIdPuntoVendita(0);
-			repositoryProdotto.save(product);
-			punti++;
-			}
-        }
-        punti=punti*10;
-		return punti;
-	}
 
 	public float getPrezzoTotale(List<Prodotto> prodotti) {
 		float prezzoTotale = 0;
@@ -44,5 +31,6 @@ public class ServiceProdotto {
 		
 		return prezzoTotale;
 	}
+
 
 }

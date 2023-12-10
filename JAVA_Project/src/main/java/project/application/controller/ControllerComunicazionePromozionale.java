@@ -24,4 +24,5 @@ public class ControllerComunicazionePromozionale {
 	public String inserimentoCPromozionale(int idProgrammaFedelta,String info,int idPuntoVendita){
 		return serviceComunicazonePromozionale.inserimentoCPromozionale(idProgrammaFedelta,info,idPuntoVendita);
 	}
+
 }

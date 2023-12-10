@@ -26,4 +26,8 @@ public class ServiceComunicazionePromozionale {
 		repositoryComunicazionePromozionale.save(cp);
 		return "confermaCreazione";
 	}
+
+	public String richiestaInfoCP(int idProgrammaFedelta) {
+		return "Richiedi le info CP";
+	}
 }

@@ -47,11 +47,16 @@ public class ControllerCliente{
 	
 	@PostMapping("/acquistoProdotto")
 	public String acquistoProdotto(List<Prodotto> prodotti,int idPuntoVendita,int idCliente) {
-		 int punti = controllerProdotto.registraAcquistoProdotto(prodotti,idPuntoVendita);		
-		 controllerCartaFedelta.updateCashBack(idCliente,punti);
+		 controllerCartaFedelta.updatePuntiProgramma(prodotti,idPuntoVendita , idCliente);
 		 return "Punti Aggiornati";
 	}
-
+	
+	@PostMapping("/acquistaProdotto")
+	public String acquistaProdotto(List<Prodotto> prodotti) {
+		float prezzoTotale = controllerProdotto.getPrezzoTotale(prodotti);
+		return "Richiedi utilizzo sconto, prezzo Totale " + prezzoTotale;
+	}
+	
 	@PostMapping("/visualizzaClassifica")
 	public List<CartaFedelta> visualizzaClassifica(int idProgramma) {
 		return controllerCartaFedelta.getListaCartaFedelta(idProgramma);
@@ -78,12 +83,6 @@ public class ControllerCliente{
 		return "ErrorePagamento";
 	}
 
-	@PostMapping("/acquistaProdotto")
-	public String acquistaProdotto(List<Prodotto> prodotti) {
-		float prezzoTotale = controllerProdotto.getPrezzoTotale(prodotti);
-		return "Richiedi Sconto, prezzo Totale " + prezzoTotale;
-	}
-
 	@PostMapping("/rispostaSconto")
 	public String rispostaSconto(String rispostaSconto, int prezzoTotale) {
 		if(rispostaSconto.toUpperCase().equals("yes"))
@@ -93,10 +92,10 @@ public class ControllerCliente{
 	}
 
 	@PostMapping("/pagamento")
-	public String pagamento(String datiPagamento, List<Prodotto> prodotti,int idPuntoVendita) {
+	public String pagamento(String datiPagamento, List<Prodotto> prodotti,int idPuntoVendita,int quantita) {
 		boolean controlloPagamento = true;
 		if(controlloPagamento) {
-			controllerProdotto.registraAcquistoProdotto(prodotti,idPuntoVendita);
+			controllerProdotto.registraAcquistoProdotto(prodotti,idPuntoVendita,quantita);
 			return "ConfermaAqcuisto";
 			}
 		return "PagamentoRifiutato";

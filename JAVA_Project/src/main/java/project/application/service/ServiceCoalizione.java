@@ -1,6 +1,7 @@
 package project.application.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,17 @@ public class ServiceCoalizione {
 			return "Errore inserimento Adesione";
 		}
 		return "Adesione Effettuata";
+	}
+
+	public String creaCoalizione(List<Integer> listaIdPuntiVendita, int idCoalizione) {
+		Coalizione coalizione = new Coalizione();
+		coalizione.setIdCoalizone(idCoalizione);
+		for (Integer id : listaIdPuntiVendita) {
+			coalizione.setIdPuntoVendita(id);
+			repositoryCoalizione.save(coalizione);
+			return "Adesione Effettuata";
+		}
+		return "Errore inserimento Adesione";
 	}
 	
 	

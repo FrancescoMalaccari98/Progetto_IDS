@@ -49,10 +49,12 @@ public class ControllerProgrammaFedelta {
 		return serviceProgrammaFedelta.inserimentoInformazioniDetagliate(moduloInformazioniDettagliate);
 	}
 
+	@PostMapping("/getListaServiziEsclusivi")
 	public List<String> getListaServiziEsclusivi(int idProgrammaFedelta) {
 		return serviceProgrammaFedelta.getListaServiziEsclusivi(idProgrammaFedelta);
 	}
 
+	@PostMapping("/acquistoCartaVIP")
 	public String acquistoCartaVIP(int idCliente) {
 		boolean controlloPagamento = true;
 		if(controlloPagamento) {

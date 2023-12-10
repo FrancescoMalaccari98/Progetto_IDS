@@ -17,9 +17,15 @@ public class ControllerProdotto {
 	@Autowired
 	ServiceProdotto serviceProdotto;
 	
+	@Autowired
+	ControllerMagazzino controllerMagazzino;
+	
 	@PostMapping("/registraAcquistoProdotto")
-	public int registraAcquistoProdotto(List<Prodotto> prodotti,int idPuntoVendita) {
-		 return serviceProdotto.updateProdotto(prodotti,idPuntoVendita);
+	public String registraAcquistoProdotto(List<Prodotto> prodotti,int idPuntoVendita,int quantita) {
+		  for (Prodotto prodotto : prodotti) {
+			  controllerMagazzino.removeProdotto(prodotto.getId(),idPuntoVendita,quantita);
+		}
+		  return "confermaUpdateMagazzino";
 	}
 
 	@PostMapping("/getPrezzoTotale")

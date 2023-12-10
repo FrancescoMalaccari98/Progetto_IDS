@@ -1,6 +1,7 @@
 package project.application.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,5 +34,10 @@ public class ControllerCoalizione {
 	@PostMapping("/inserimentoAdesione")
 	public String inserimentoAdesione(String  adesione) {
 		return serviceCoalizione.inserimentoAdesione(adesione);
+	}
+
+	@PostMapping("/inoltroRichiestaAdesioneCoalizione")
+	public String inoltroRichiestaAdesioneCoalizione(List<Integer> listaIdPuntiVendita, int idCoalizione) {
+		return serviceCoalizione.creaCoalizione(listaIdPuntiVendita,idCoalizione);
 	}
 }
