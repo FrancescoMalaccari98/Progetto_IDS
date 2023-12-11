@@ -20,8 +20,8 @@ public class ControllerProdotto {
 	@Autowired
 	ControllerMagazzino controllerMagazzino;
 	
-	@PostMapping("/registraAcquistoProdotto")
-	public String registraAcquistoProdotto(List<Prodotto> prodotti,int idPuntoVendita,int quantita) {
+	@PostMapping("/updateProdotto")
+	public String updateProdotto(List<Prodotto> prodotti,int idPuntoVendita,int quantita) {
 		  for (Prodotto prodotto : prodotti) {
 			  controllerMagazzino.removeProdotto(prodotto.getId(),idPuntoVendita,quantita);
 		}

@@ -20,7 +20,6 @@ public class ControllerMagazzino {
 		return serviceMagazzino.getListaProdotti(idPuntoVendita);
 	}
 	
-
 	@PostMapping("/addProdotto")
 	public String addProdotto(int quantita, int idProdotto, int idPuntoVendita) {
 		return serviceMagazzino.addProdotto(quantita,idProdotto,idPuntoVendita);

@@ -32,7 +32,7 @@ public class ControllerProprietarioAzienda {
 	
 	@PostMapping("/adesioneProgrammaFedelta")
 	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
-		return controllerProgrammaFedelta.adesioneProgrammaFedelta();
+		return controllerProgrammaFedelta.getListaProgrammiFedelta();
 	}
 
 	@PostMapping("/selezioneProgramma")
@@ -54,20 +54,12 @@ public class ControllerProprietarioAzienda {
 		return controllerPuntoVendita.inserimentoInformazioniAggiuntive(informazioniAggiuntive);
 	}
 
-	@PostMapping("/creaCoalizione")
-	public String creaCoalizione() {
-		return controllerCoalizione.creaCoalizione();
-	}
 	
 	@PostMapping("/inserimentoInfoCoalizione")
 	public String inserimentoInfoCoalizione(HashMap<String, String> informazioni) {
 		return controllerCoalizione.inserimentoInformazioni(informazioni);
 	}
 	
-	@PostMapping("/inoltroRichiestaAdesione")
-	public String inoltroRichiestaAdesione(String adesione) {
-		return controllerCoalizione.inserimentoAdesione(adesione);
-	}
 	
 	@PostMapping("/accessoPannelloDiControllo")
 	public String accessoPannelloDiControllo(String nomeUtente,String password) {
@@ -79,7 +71,7 @@ public class ControllerProprietarioAzienda {
 	
 	@PostMapping("/richiestaListaDipendeti")
 	public List<Operatore> richiestaListaDipendeti(int idPuntoVendita){
-		return controllerOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
+		return controllerOperatore.richiestaListaDipendenti(idPuntoVendita);
 	}
 	
 	@PostMapping("/selezionaCandidatoAdmin")

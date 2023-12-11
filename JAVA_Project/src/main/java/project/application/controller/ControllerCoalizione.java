@@ -17,10 +17,6 @@ public class ControllerCoalizione {
 	@Autowired
 	ServiceCoalizione serviceCoalizione;
 	
-	@PostMapping("/creaCoalizione")
-	public String creaCoalizione(){
-		return "richiestaInformazioni";
-	}
 	
 	@PostMapping("/inserimentoInformazioni")
 	public String inserimentoInformazioni(HashMap<String,String> informazioni){		
@@ -29,11 +25,6 @@ public class ControllerCoalizione {
 			return "Coalizione già esistente";
 		else
 			return "Coalizione creata";
-	}
-
-	@PostMapping("/inserimentoAdesione")
-	public String inserimentoAdesione(String  adesione) {
-		return serviceCoalizione.inserimentoAdesione(adesione);
 	}
 
 	@PostMapping("/inoltroRichiestaAdesioneCoalizione")

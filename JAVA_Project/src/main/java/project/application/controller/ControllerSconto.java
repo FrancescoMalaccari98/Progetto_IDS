@@ -22,11 +22,6 @@ public class ControllerSconto {
 	@Autowired
 	ControllerPuntoVendita controllerPuntoVendita;
 	
-	@PostMapping("/creaCodiceSconto")
-	public String creaCodiceSconto() {
-		return "RichiestaInfo";
-	}
-	
 	@PostMapping("/inserimentoSconto")
 	public String inserimentoSconto(HashMap<String,String>  infoSconto,int idPuntoVendita){
 		serviceSconto.inserimentoSconto(infoSconto,idPuntoVendita);

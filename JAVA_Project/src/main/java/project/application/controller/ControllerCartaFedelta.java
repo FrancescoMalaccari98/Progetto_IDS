@@ -45,11 +45,11 @@ public class ControllerCartaFedelta {
 		 if(programmaFedelta.getNomeProgramma().equals("Cliente CashBack"))
 			 //aggiungo 10 punti perchè cliente CashBack
 			 serviceCartaFedelta.setCashBack(idCliente,10);
-		 if(programmaFedelta.getNomeProgramma().equals("Cliente Punti"))
+		 if(programmaFedelta.getNomeProgramma().equals("Cliente Punti")) {
 			 //aggiungo 20 punti perchè cliente Punti
 			 serviceCartaFedelta.setCashBack(idCliente,20);
-		 if(programmaFedelta.getNomeProgramma().equals("Cliente Punti"))
 			 controllerCartaFedelta.updatePunti(prodotti, idPuntoVendita, idCliente);
+		 }
 		return "Punti aggiornati";
 	}
 	

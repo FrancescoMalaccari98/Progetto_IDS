@@ -22,8 +22,8 @@ public class ControllerProgrammaFedelta {
 	@Autowired
 	ControllerCartaFedelta controllerCartaFedelta;
 	
-	@PostMapping("/adesioneProgrammaFedelta")
-	public List<ProgrammaFedelta> adesioneProgrammaFedelta() {
+	@PostMapping("/getListaProgrammiFedelta")
+	public List<ProgrammaFedelta> getListaProgrammiFedelta() {
 		List<ProgrammaFedelta> listaProgrammi = serviceProgrammaFedelta.getListaProgrammiFedelta();
 		return listaProgrammi;
 	}

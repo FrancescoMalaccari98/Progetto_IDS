@@ -104,6 +104,11 @@ public class ControllerPuntoVendita {
 		return servicePuntoVendita.getListaNomiProgrammiFedelta(idPuntoVendita);
 	}
 	
+	@PostMapping("/inserimentoCPPromozionale")
+	public String inserimentoCPPromozionale(int idPuntoVendita, int idProgramma,String info) {
+		return controllerComunicazionePromozionale.creaComunicazionePromozionale(idPuntoVendita,info,idProgramma);
+	}
+	
 	@PostMapping("/inserimentoQuantita")
 	public String inserimentoQuantita(int quantita, int idProdotto,String tipoOperazione,int idPuntovendita) {
 		if(tipoOperazione.equals("Inserimento")){

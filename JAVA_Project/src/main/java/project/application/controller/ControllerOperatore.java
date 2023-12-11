@@ -28,8 +28,8 @@ public class ControllerOperatore {
 	@Autowired
 	ControllerPuntoVendita controllerPuntovendita;
 	
-	@PostMapping("/getDipendenteByPuntoVendita")
-	public List<Operatore> getDipendenteByPuntoVendita(int idPuntoVendita) {
+	@PostMapping("/richiestaListaDipendenti")
+	public List<Operatore> richiestaListaDipendenti(int idPuntoVendita) {
 		return serviceOperatore.getDipendenteByPuntoVendita(idPuntoVendita);
 	}
 	

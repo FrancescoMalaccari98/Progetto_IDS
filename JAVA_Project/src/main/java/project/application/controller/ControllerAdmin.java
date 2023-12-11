@@ -34,11 +34,6 @@ public class ControllerAdmin {
 
 	}
 
-	@PostMapping("/creaCodiceSconto")
-	public String creaCodiceSconto() {
-		return controllerSconto.creaCodiceSconto();
-	}
-
 	@PostMapping("/inserimentoInfoSconto")
 	public String inserimentoInfoSconto(HashMap<String,String>  infoSconto, int idPuntoVendita) {
 		return controllerSconto.inserimentoSconto(infoSconto,idPuntoVendita);

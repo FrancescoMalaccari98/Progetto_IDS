@@ -56,11 +56,6 @@ public class ControllerCliente{
 		float prezzoTotale = controllerProdotto.getPrezzoTotale(prodotti);
 		return "Richiedi utilizzo sconto, prezzo Totale " + prezzoTotale;
 	}
-	
-	@PostMapping("/visualizzaClassifica")
-	public List<CartaFedelta> visualizzaClassifica(int idProgramma) {
-		return controllerCartaFedelta.getListaCartaFedelta(idProgramma);
-	}
 
 	@PostMapping("/richiestaCashback")
 	public int richiestaCashback(int idCliente) {
@@ -95,7 +90,7 @@ public class ControllerCliente{
 	public String pagamento(String datiPagamento, List<Prodotto> prodotti,int idPuntoVendita,int quantita) {
 		boolean controlloPagamento = true;
 		if(controlloPagamento) {
-			controllerProdotto.registraAcquistoProdotto(prodotti,idPuntoVendita,quantita);
+			controllerProdotto.updateProdotto(prodotti,idPuntoVendita,quantita);
 			return "ConfermaAqcuisto";
 			}
 		return "PagamentoRifiutato";

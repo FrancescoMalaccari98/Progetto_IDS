@@ -20,8 +20,8 @@ public class ControllerComunicazionePromozionale {
 		return serviceComunicazonePromozionale.getListaCPromozionale(idPuntoVendtia);
 	}
 	
-	@PostMapping("/inserimentoCPromozionale")
-	public String inserimentoCPromozionale(int idProgrammaFedelta,String info,int idPuntoVendita){
+	@PostMapping("/creaComunicazionePromozionale")
+	public String creaComunicazionePromozionale(int idProgrammaFedelta,String info,int idPuntoVendita){
 		return serviceComunicazonePromozionale.inserimentoCPromozionale(idProgrammaFedelta,info,idPuntoVendita);
 	}
 
