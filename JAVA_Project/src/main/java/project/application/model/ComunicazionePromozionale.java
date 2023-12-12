@@ -15,7 +15,7 @@ public class ComunicazionePromozionale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
     @Column
-    private int tipo;
+    private String tipo;
     @Column
     private String contenuto;
     @Column
@@ -23,10 +23,10 @@ public class ComunicazionePromozionale {
     @Column
     private int idProgrammaFedelta;
 	
-	public int getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(int tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public String getContenuto() {
