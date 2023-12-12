@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,7 +70,7 @@ public class ControllerProprietarioAzienda {
 		return "accessoNegato";
 	}
 	
-	@PostMapping("/richiestaListaDipendeti")
+	@GetMapping("/richiestaListaDipendeti")
 	public List<Operatore> richiestaListaDipendeti(int idPuntoVendita){
 		return controllerOperatore.richiestaListaDipendenti(idPuntoVendita);
 	}
@@ -79,7 +80,7 @@ public class ControllerProprietarioAzienda {
 		return controllerOperatore.setAdmin(idOperatore); 
 	}
 	
-	@PostMapping("/richiestaPuntiVenditaDisponibili")
+	@GetMapping("/richiestaPuntiVenditaDisponibili")
 	public List<String> richiestaPuntiVenditaDisponibili(){
 		return controllerPuntoVendita.getListaPuntiVendita(); 
 	}

@@ -2,10 +2,7 @@ package project.application.service;
 
 import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import project.application.model.Coalizione;
 import project.application.repository.RepositoryCoalizione;
 

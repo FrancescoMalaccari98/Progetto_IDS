@@ -1,5 +1,6 @@
 package project.application.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,4 +14,8 @@ public class ProprietarioAzienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
+    private String nome;
+    @Column
+    private int idPuntoVendita;
 }

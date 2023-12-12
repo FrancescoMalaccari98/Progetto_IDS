@@ -1,12 +1,8 @@
 package project.application.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import project.application.model.CartaFedelta;
-import project.application.model.Cliente;
 import project.application.model.Prodotto;
 import project.application.repository.RepositoryProdotto;
 

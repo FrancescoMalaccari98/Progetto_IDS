@@ -26,7 +26,7 @@ public class ServiceSconto {
 		return false;
 	}
 
-	public float applicaSconto(Sconto sconto,int prezzoTotale) {
+	public float applicaSconto(Sconto sconto,float prezzoTotale) {
 		float prezzoScontato = prezzoTotale - sconto.getValore();
 		return prezzoScontato;
 	}

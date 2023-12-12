@@ -7,10 +7,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import project.application.model.ProgrammaFedelta;
 import project.application.repository.RepositoryProgrammaFedelta;
 

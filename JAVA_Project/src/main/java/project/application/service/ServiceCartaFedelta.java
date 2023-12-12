@@ -2,12 +2,9 @@ package project.application.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import project.application.model.CartaFedelta;
-import project.application.model.Cliente;
 import project.application.model.Premi;
 import project.application.repository.RepositoryCartaFedelta;
 
@@ -21,9 +18,7 @@ public class ServiceCartaFedelta {
 		return repositoryCartaFedelta.findById(idCartaFedelta);
 	}
 	
-	/*
-	 * Sets the cashback after a product purchase.
-	 */
+
 	public String setCashBack(int idCartaFedelta,int punti) {
 		 CartaFedelta cartaCliente = repositoryCartaFedelta.findById(idCartaFedelta);
 		 cartaCliente.setPunti(cartaCliente.getPunti()+punti);
@@ -48,9 +43,6 @@ public class ServiceCartaFedelta {
 		}
 	}
 	
-	/*
-	 * Reflects changes in the cashback balance post withdrawal request.
-	 */
 	public boolean updateCashBack(int contoCorrente,int idCliente,int importoCashBack){
 		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		try {
@@ -62,9 +54,7 @@ public class ServiceCartaFedelta {
 		return true;
 	}
 	
-	/*
-	 * Reflects changes in the cashback balance post withdrawal request.
-	 */
+
 	public boolean updatePunti(int idCliente,int punti){
 		CartaFedelta cartaFedelta = repositoryCartaFedelta.findByIdCliente(idCliente);
 		try {

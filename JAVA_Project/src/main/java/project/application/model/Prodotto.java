@@ -22,8 +22,6 @@ public class Prodotto {
     private int prezzo;
     @Column
     private String informazioniProdotto;
-    @Column
-    private int idPuntoVendita;
     
 	public String getInformazioniProdotto() {
 		return informazioniProdotto;
@@ -46,12 +44,5 @@ public class Prodotto {
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
 	}
-	public int getIdPuntoVendita() {
-		return idPuntoVendita;
-	}
-	public void setIdPuntoVendita(int idPuntoVendita) {
-		this.idPuntoVendita = idPuntoVendita;
-	}
-
 
 }
